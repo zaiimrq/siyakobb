@@ -1,5 +1,7 @@
 <?php
 
 use Livewire\Volt\Volt;
+use Illuminate\Support\Facades\Route;
 
-Volt::route('/', 'users.index');
+Route::view('/', 'index');
+Volt::route('/create', 'items.create')->name('items.create');
