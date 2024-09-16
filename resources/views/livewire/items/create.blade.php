@@ -11,6 +11,7 @@ new class extends Component {
 
     public function save()
     {
+
         try {
             $this->validate();
             $this->form->store();
@@ -33,7 +34,6 @@ new class extends Component {
             @php
                 $config = [
                     'altFormat' => 'd M Y',
-                    'dateFormat' => 'd/m/Y',
                 ];
             @endphp
             <x-datepicker label="Tanggal Register" icon="o-calendar" :config="$config"

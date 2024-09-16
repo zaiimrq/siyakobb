@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="shortcut icon" href="{{ asset('images/logo.jpg') }}" type="image/x-icon">
     <title>{{ isset($title) ? $title . ' - ' . config('app.name') : config('app.name') }}</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -25,7 +26,13 @@
                 <x-icon name="o-bars-3" class="cursor-pointer" />
             </label>
 
-            <div class="font-bold" >Siyakobb</div>
+            <div class="flex items-center gap-2">
+                <img src="{{ asset('images/logo.jpg') }}" class="rounded-md size-8" alt="">
+                <div class="flex flex-col">
+                    <span class="font-bold" >Siyakobb</span>
+                    <span class="hidden text-xs uppercase md:block" >Sistem Informasi Layanan Kodebar BASAN BARAN</span>
+                </div>
+            </div>
         </x-slot:brand>
 
         <x-slot:actions>

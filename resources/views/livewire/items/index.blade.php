@@ -12,6 +12,8 @@ new class extends Component {
     public ?Item $item;
     public bool $isOpen = false;
     public string $search = '';
+    public int $perPage = 5;
+    public int $currentPage = 1;
 
     #[Computed]
     public function items()
@@ -21,12 +23,12 @@ new class extends Component {
                 $search = '%' . $this->search . '%';
                 $query->whereAny(['tersangka', 'jenis', 'golongan', 'satuan', 'gudang', 'jaksa_penitip'], 'LIKE', $search);
             })
-            ->paginate(7);
+            ->paginate($this->perPage);
     }
 
     public function headers(): array
     {
-        return [['key' => 'tanggal_register', 'label' => 'Tanggal'], ['key' => 'tersangka', 'label' => 'Tersangka'], ['key' => 'jenis', 'label' => 'Jenis'], ['key' => 'golongan', 'label' => 'Golongan']];
+        return [['key' => 'id', 'label' => '#'], ['key' => 'tanggal_register', 'label' => 'Tanggal'], ['key' => 'tersangka', 'label' => 'Tersangka'], ['key' => 'jenis', 'label' => 'Jenis'], ['key' => 'golongan', 'label' => 'Golongan']];
     }
 
     public function destroy()
@@ -51,6 +53,7 @@ new class extends Component {
 
     public function with(): array
     {
+        $this->currentPage = $this->items()->currentPage() - 1;
         return [
             'headers' => $this->headers(),
             'items' => $this->items(),
@@ -71,14 +74,18 @@ new class extends Component {
         </x-header>
     </x-card>
     <x-card class="shadow">
-        <x-table :headers="$headers" :rows="$items" @row-click="$wire.show($event.detail.id)" class="mt-3" striped
-            with-pagination>
+        <x-table :headers="$headers" :rows="$items" per-page="perPage" :per-page-values="[5, 7, 10, 15]"
+            @row-click="$wire.show($event.detail.id)" class="mt-3" striped with-pagination>
+            @scope('cell_id', $item)
+                <div x-text="$wire.currentPage * $wire.perPage + {{ $loop->iteration }}"></div>
+            @endscope
             @scope('cell_tanggal_register', $item)
                 <div>{{ $item->tanggal_register->format('d M Y') }}</div>
             @endscope
             @scope('actions', $item)
                 <div class="flex">
-                    <x-button icon="o-pencil-square" wire:click.stop :link="route('items.edit', $item)" class="btn btn-sm text-warning btn-ghost" />
+                    <x-button icon="o-pencil-square" wire:click.stop :link="route('items.edit', $item)"
+                        class="btn btn-sm text-warning btn-ghost" />
                     <x-button icon="o-trash" wire:click.stop='openModal({{ $item }})'
                         class="btn btn-sm text-error btn-ghost" />
                 </div>
