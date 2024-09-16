@@ -1,13 +1,14 @@
 <?php
 
+use App\Http\Middleware\EnsureAdminMiddleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
 Route::view('/', 'index')->name('items.index');
-Volt::route('/create', 'items.create')->name('items.create');
+Volt::route('/create', 'items.create')->middleware(['auth', EnsureAdminMiddleware::class])->name('items.create');
 Volt::route('/{item?}', 'items.show')->name('items.show');
-Volt::route('/{item}/edit', 'items.edit')->name('items.edit');
+Volt::route('/{item}/edit', 'items.edit')->middleware(['auth', EnsureAdminMiddleware::class])->name('items.edit');
 
 // Authentication routes
 Route::middleware(['guest'])->group(function () {

@@ -13,7 +13,8 @@
     @if (Route::is('items.create') || Route::is('items.edit') || Route::is('items.show'))
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/robsontenorio/mary@0.44.2/libs/currency/currency.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/robsontenorio/mary@0.44.2/libs/currency/currency.js">
+        </script>
     @endif
 </head>
 
@@ -26,11 +27,15 @@
                 <x-icon name="o-bars-3" class="cursor-pointer" />
             </label>
 
-           <x-brand />
+            <x-brand />
         </x-slot:brand>
 
         <x-slot:actions>
             <x-theme-toggle class="btn btn-circle btn-ghost btn-sm" />
+            @guest
+                <x-button label="Login" :link="route('login')" icon="o-arrow-right-end-on-rectangle"
+                    class="btn btn-primary btn-sm ms-3" />
+            @endguest
         </x-slot:actions>
     </x-nav>
 
@@ -40,7 +45,8 @@
             @if ($user = auth()->user())
                 <x-list-item :item="$user" value="name" sub-value="email" no-separator no-hover class="pt-2">
                     <x-slot:actions>
-                        <x-button icon="o-power" class="btn-circle btn-ghost btn-xs" tooltip-left="logout" :link="route('logout')" />
+                        <x-button icon="o-power" class="btn-circle btn-ghost btn-xs" tooltip-left="logout"
+                            :link="route('logout')" />
                     </x-slot:actions>
                 </x-list-item>
 
@@ -50,11 +56,6 @@
             {{-- Activates the menu item when a route matches the `link` property --}}
             <x-menu activate-by-route>
                 <x-menu-item title="Home" icon="o-home" link="/" />
-                <x-menu-item title="Messages" icon="o-envelope" link="/" />
-                <x-menu-sub title="Settings" icon="o-cog-6-tooth">
-                    <x-menu-item title="Wifi" icon="o-wifi" link="####" />
-                    <x-menu-item title="Archives" icon="o-archive-box" link="####" />
-                </x-menu-sub>
             </x-menu>
         </x-slot:sidebar>
         <x-slot:content>

@@ -3,6 +3,7 @@
 namespace App\Livewire\Forms;
 
 use App\Models\Item;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 
@@ -83,6 +84,7 @@ class ItemForm extends Form
 
     public function update()
     {
+        Gate::authorize('update', $this->item);
         $this->item->update($this->all());
     }
 }

@@ -11,9 +11,9 @@ new class extends Component {
 
     public function save()
     {
-
         try {
             $this->validate();
+            $this->authorize('create', App\Models\Item::class);
             $this->form->store();
             $this->success('Success create new data', redirectTo: '/');
         } catch (\Throwable $th) {
