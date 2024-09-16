@@ -44,7 +44,7 @@ new class extends Component {
             @endphp
             <x-datepicker label="Tanggal Register" icon="o-calendar" :config="$config"
                 wire:model="form.tanggal_register" />
-
+            <x-input label="Tersangka" wire:model="form.tersangka" />
             <div class="col-span-2">
                 <x-textarea label="Jenis" class="" wire:model="form.jenis" />
             </div>
@@ -56,8 +56,6 @@ new class extends Component {
             <x-input label="Satuan" wire:model="form.satuan" />
 
             <x-input label="Gudang" wire:model="form.gudang" />
-
-            <x-input label="Tersangka" wire:model="form.tersangka" />
 
             <template x-if="$wire.isEdit">
                 <x-input label="Nilai Perkiraan Awal" money prefix="Rp." local="id-ID"

@@ -21,11 +21,12 @@ new class extends Component {
             <x-input label="Jenis Pidana" value="{{ $item->jenis_pidana }}" readonly />
 
             <x-input label="Nomor Register" value="{{ $item->nomor_register }}" readonly />
-            <x-input label="Tanggal Register" icon="o-calendar"
-                value="{{ $item->tanggal_register->format('d M Y') }}" readonly />
+            <x-input label="Tanggal Register" icon="o-calendar" value="{{ $item->tanggal_register->format('d M Y') }}"
+                readonly />
 
+            <x-input label="Tersangka" value="{{ $item->tersangka }}" readonly />
             <div class="col-span-2">
-                <x-textarea label="Jenis" readonly >
+                <x-textarea label="Jenis" readonly>
                     {{ $item->jenis }}
                 </x-textarea>
             </div>
@@ -37,8 +38,6 @@ new class extends Component {
             <x-input label="Satuan" value="{{ $item->satuan }}" readonly />
 
             <x-input label="Gudang" value="{{ $item->gudang }}" readonly />
-
-            <x-input label="Tersangka" value="{{ $item->tersangka }}" readonly />
 
             <x-input label="Nilai Perkiraan Awal" prefix="Rp." local="id-ID"
                 value="{{ $item->nilai_perkiraan_awal }}" readonly />
