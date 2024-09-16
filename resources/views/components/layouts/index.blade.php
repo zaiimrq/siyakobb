@@ -26,13 +26,7 @@
                 <x-icon name="o-bars-3" class="cursor-pointer" />
             </label>
 
-            <div class="flex items-center gap-2">
-                <img src="{{ asset('images/logo.jpg') }}" class="rounded-md size-8" alt="">
-                <div class="flex flex-col">
-                    <span class="font-bold" >Siyakobb</span>
-                    <span class="hidden text-xs uppercase md:block" >Sistem Informasi Layanan Kodebar BASAN BARAN</span>
-                </div>
-            </div>
+           <x-brand />
         </x-slot:brand>
 
         <x-slot:actions>
@@ -46,8 +40,7 @@
             @if ($user = auth()->user())
                 <x-list-item :item="$user" value="name" sub-value="email" no-separator no-hover class="pt-2">
                     <x-slot:actions>
-                        <x-button icon="o-power" class="btn-circle btn-ghost btn-xs" tooltip-left="logoff"
-                            no-wire-navigate link="/logout" />
+                        <x-button icon="o-power" class="btn-circle btn-ghost btn-xs" tooltip-left="logout" :link="route('logout')" />
                     </x-slot:actions>
                 </x-list-item>
 
