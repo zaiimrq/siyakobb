@@ -2,19 +2,25 @@
 
 use Livewire\Volt\Component;
 use App\Livewire\Forms\ItemForm;
+use App\Models\Item;
 use Mary\Traits\Toast;
 
 new class extends Component {
     use Toast;
 
     public ItemForm $form;
+    public bool $isEdit = true;
+    public function mount(Item $item)
+    {
+        $this->form->setItem($item);
+    }
 
     public function save()
     {
         try {
             $this->validate();
-            $this->form->store();
-            $this->success('Success create new data', redirectTo: '/');
+            $this->form->update();
+            $this->success('Success update your data', redirectTo: '/');
         } catch (\Throwable $th) {
             $this->error('Oops, Something went wrong');
             $this->validate();
@@ -53,8 +59,10 @@ new class extends Component {
 
             <x-input label="Tersangka" wire:model="form.tersangka" />
 
-            <x-input label="Nilai Perkiraan Awal" money prefix="Rp." local="id-ID"
-                wire:model="form.nilai_perkiraan_awal" />
+            <template x-if="$wire.isEdit">
+                <x-input label="Nilai Perkiraan Awal" money prefix="Rp." local="id-ID"
+                    wire:model="form.nilai_perkiraan_awal" />
+            </template>
 
             <x-input label="Kondisi Awal" wire:model="form.kondisi_awal" />
 
@@ -68,7 +76,7 @@ new class extends Component {
         </x-form>
         <x-slot:actions>
             <x-button label="Cancel" link="/" class="btn btn-error" />
-            <x-button label="Create" form="form-item" type="submit" class="btn btn-primary" spinner="save" />
+            <x-button label="Update" form="form-item" type="submit" class="btn btn-primary" spinner="save" />
         </x-slot:actions>
     </x-card>
 </div>
