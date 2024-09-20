@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
-Route::view('/', 'index')->name('items.index');
+Route::view('/', 'index');
 Route::prefix('items')
     ->name('items.')
     ->middleware(['auth', EnsureAdminMiddleware::class])
