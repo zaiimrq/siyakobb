@@ -25,7 +25,6 @@ class ItemSeeder extends Seeder
             'kondisi_awal' => 'BAIK',
             'status_tingkat_pemeriksaan' => 'PUTUSAN',
             'jaksa_penitip' => 'MARTHIN MANUHUTU, SH',
-            'image' => 'items/banner.jpg',
         ]);
     }
 }

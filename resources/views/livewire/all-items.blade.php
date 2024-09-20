@@ -25,7 +25,7 @@ new class extends Component {
 
 <div class="space-y-6">
     <div class="flex justify-center">
-        <div class="w-1/2">
+        <div class="w-full md:w-2/3 lg:w-1/2">
             <x-input wire:model.live.debounce.500ms='search' icon="o-bolt" placeholder="Search..." />
         </div>
     </div>
@@ -42,7 +42,7 @@ new class extends Component {
                 <p>{{ $item->status_tingkat_pemeriksaan }}</p>
                 <p>{{ $item->jaksa_penitip }}</p>
                 <x-slot:figure class="flex-col">
-                    <img src="{{ Storage::url($item->image) }}" alt="">
+                    <img src="{{ $item->image ? Storage::url($item->image) : 'https://picsum.photos/300/200' }}" alt="Basan picture" class="w-full object-cover">
                     <div class="flex items-center justify-end w-full gap-3 mt-3">
                         <span class="text-sm me-5">
                             <span class="me-2">

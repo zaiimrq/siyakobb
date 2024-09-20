@@ -61,7 +61,7 @@ new class extends Component {
 <div>
     <div class="min-h-screen space-y-5">
         <x-card class="shadow">
-            <x-header title="Basan" subtitle="Daftar barang sitaan / barang rampasan">
+            <x-header title="Basan / Baran" subtitle="Daftar barang sitaan / barang rampasan">
                 <x-slot:middle class="!justify-end">
                     <x-input wire:model.lazy='search' icon="o-bolt" placeholder="Search..." type="search" />
                 </x-slot:middle>
