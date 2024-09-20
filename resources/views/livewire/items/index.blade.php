@@ -20,6 +20,7 @@ new class extends Component {
     public function items()
     {
         return Item::query()
+            ->latest()
             ->when($this->search, function ($query) {
                 $search = '%' . $this->search . '%';
                 $query->whereAny(['tersangka', 'jenis', 'golongan', 'satuan', 'gudang', 'jaksa_penitip'], 'LIKE', $search);

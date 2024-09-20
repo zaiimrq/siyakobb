@@ -56,6 +56,9 @@
             {{-- Activates the menu item when a route matches the `link` property --}}
             <x-menu activate-by-route>
                 <x-menu-item title="Home" icon="o-home" link="/" />
+                @if (request()->user()?->isAdmin())
+                    <x-menu-item title="Items" icon="o-squares-2x2" link="{{ route('items.index') }}" />
+                @endif
             </x-menu>
         </x-slot:sidebar>
         <x-slot:content>

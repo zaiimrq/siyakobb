@@ -6,9 +6,15 @@ use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
 Route::view('/', 'index')->name('items.index');
-Volt::route('/create', 'items.create')->middleware(['auth', EnsureAdminMiddleware::class])->name('items.create');
-Volt::route('/{item?}', 'items.show')->name('items.show');
-Volt::route('/{item}/edit', 'items.edit')->middleware(['auth', EnsureAdminMiddleware::class])->name('items.edit');
+Route::prefix('items')
+    ->name('items.')
+    ->middleware(['auth', EnsureAdminMiddleware::class])
+    ->group(function () {
+        Volt::route('/', 'items.index')->name('index');
+        Volt::route('/create', 'items.create')->name('create');
+        Volt::route('/{item}', 'items.show')->name('show');
+        Volt::route('/{item}/edit', 'items.edit')->name('edit');
+    });
 
 // Authentication routes
 Route::middleware(['guest'])->group(function () {
