@@ -32,8 +32,8 @@ new class extends Component {
 
     <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
         @foreach ($items as $item)
-            <x-card title="{{ $item->tersangka }}" class="shadow-md">
-                <table>
+            <x-card title="{{ $item->tersangka }}" class="overflow-x-hidden shadow-md">
+                <table class="table-fixed ">
                     <x-tr label="Jenis Tindak Pidana" :value="$item->jenis_tindak_pidana" />
                     <x-tr label="Nomor Register" :value="$item->nomor_register" />
                     <x-tr label="Tersangka / Perkara Pasal" :value="$item->tersangka" />
