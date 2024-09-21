@@ -44,7 +44,7 @@ new class extends Component {
             <x-input label="Kondisi Awal" wire:model="form.kondisi_awal" />
             <x-input label="Status Tingkat Pemeriksaan" wire:model="form.status_tingkat_pemeriksaan" />
             <x-input label="Jaksa Penitip" wire:model="form.jaksa_penitip" />
-            <x-file label='Photo' wire:model='form.image' />
+                <x-file label='Photo' wire:model='form.image' class="pr-0" />
         </x-form>
         <x-slot:actions>
             <x-button label="Cancel" link="/" class="btn btn-error" />

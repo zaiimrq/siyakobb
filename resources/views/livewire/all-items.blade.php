@@ -33,16 +33,21 @@ new class extends Component {
     <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
         @foreach ($items as $item)
             <x-card title="{{ $item->tersangka }}" class="shadow-md">
-                <p>{{ $item->nomor_register }}</p>
-                <p>{{ $item->jenis_pidana }}</p>
-                <p>{{ $item->jenis }}</p>
-                <p>{{ $item->golongan }}</p>
-                <p>{{ $item->nilai_perkiraan_awal }}</p>
-                <p>{{ $item->kondisi_awal }}</p>
-                <p>{{ $item->status_tingkat_pemeriksaan }}</p>
-                <p>{{ $item->jaksa_penitip }}</p>
+                <table>
+                    <x-tr label="Jenis Tindak Pidana" :value="$item->jenis_tindak_pidana" />
+                    <x-tr label="Nomor Register" :value="$item->nomor_register" />
+                    <x-tr label="Tersangka / Perkara Pasal" :value="$item->tersangka" />
+                    <x-tr label="Jenis Basan / Baran" :value="$item->jenis" />
+                    <x-tr label="Golongan" :value="$item->golongan" />
+                    <x-tr label="Jumlah" :value="$item->jumlah . ' (Buah)'" />
+                    <x-tr label="Gudang" :value="$item->gudang" />
+                    <x-tr label="Kondisi Awal" :value="$item->kondisi_awal" />
+                    <x-tr label="Status Tingkat Pemeriksaan" :value="$item->status_tingkat_pemeriksaan" />
+                    <x-tr label="Jaksa Penitip" :value="$item->jaksa_penitip" />
+                </table>
                 <x-slot:figure class="flex-col">
-                    <img src="{{ $item->image ? Storage::url($item->image) : 'https://picsum.photos/300/200' }}" alt="Basan picture" class="w-full object-cover">
+                    <img src="{{ $item->image ? Storage::url($item->image) : 'https://picsum.photos/300/200' }}"
+                        alt="Basan picture" class="object-cover w-full">
                     <div class="flex items-center justify-end w-full gap-3 mt-3">
                         <span class="text-sm me-5">
                             <span class="me-2">
