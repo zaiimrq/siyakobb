@@ -60,22 +60,21 @@ new class extends Component {
 
 <div>
     <div class="min-h-screen space-y-5">
-        <x-card class="shadow">
-            <x-header title="Basan / Baran" subtitle="Daftar barang sitaan / barang rampasan">
-                <x-slot:middle class="!justify-end">
-                    <x-input wire:model.lazy='search' icon="o-bolt" placeholder="Search..." type="search" />
-                </x-slot:middle>
-                <x-slot:actions>
-                    <x-button icon="o-funnel" wire:click="$toggle('drawerOpen')" />
-                    @auth
-                        @can('create', App\Models\Item::class)
-                            <x-button icon="o-plus" link="{{ route('items.create') }}" class="btn-primary" />
-                        @endcan
-                    @endauth
-                </x-slot:actions>
-            </x-header>
-        </x-card>
-        <x-card class="shadow-md">
+        <x-header title="Basan / Baran" subtitle="Daftar barang sitaan / barang rampasan"
+            class="p-1 rounded shadow md:p-3">
+            <x-slot:middle class="!justify-end">
+                <x-input wire:model.lazy='search' icon="o-bolt" placeholder="Search..." type="search" />
+            </x-slot:middle>
+            <x-slot:actions>
+                <x-button icon="o-funnel" wire:click="$toggle('drawerOpen')" />
+                @auth
+                    @can('create', App\Models\Item::class)
+                        <x-button icon="o-plus" link="{{ route('items.create') }}" class="btn-primary" />
+                    @endcan
+                @endauth
+            </x-slot:actions>
+        </x-header>
+        <div class="p-1 rounded shadow md:p-3">
             <x-table :headers="$headers" :rows="$items" per-page="perPage" :per-page-values="[5, 7, 10, 15]"
                 @row-click="$wire.show($event.detail.id)" class="mt-3" striped with-pagination>
                 @scope('cell_id', $item)
@@ -84,9 +83,12 @@ new class extends Component {
                 @scope('cell_tanggal_register', $item)
                     <div>{{ $item->tanggal_register->format('d M Y') }}</div>
                 @endscope
+                @scope('cell_jenis', $item)
+                    <div>{{ Str::limit($item->jenis, 50, '...', preserveWords: true) }}</div>
+                @endscope
                 @auth
-                @scope('actions', $item)
-                @canany(['update', 'delete'], $item)
+                    @scope('actions', $item)
+                        @canany(['update', 'delete'], $item)
                             <div class="flex">
                                 <x-button icon="o-pencil-square" wire:click.stop :link="route('items.edit', $item)"
                                     class="btn btn-sm text-warning btn-ghost" />
@@ -94,14 +96,14 @@ new class extends Component {
                                     wire:click.stop="$set('modalOpen', true); $wire.itemId = '{{ $item->id }}'"
                                     class="btn btn-sm text-error btn-ghost" />
                             </div>
-                            @endcanany
-                        @endscope
+                        @endcanany
+                    @endscope
                 @endauth
                 <x-slot:empty>
                     <x-icon name="o-cube" label="It is empty." />
                 </x-slot:empty>
             </x-table>
-        </x-card>
+        </div>
     </div>
 
     <x-modal wire:model='modalOpen' title="Are you sure ?" class="backdrop-blur">

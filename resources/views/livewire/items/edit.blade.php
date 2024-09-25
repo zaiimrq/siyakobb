@@ -32,7 +32,7 @@ new class extends Component {
 <div>
     <x-card class="shadow-md">
         <x-button label="Back" icon="o-arrow-left" link="/" class="mb-5 text-blue-500 btn-sm btn-ghost" />
-        <x-form wire:submit='save' id="form-item" class="md:grid-cols-2" >
+        <x-form wire:submit='save' id="form-item" class="grid-cols-1 md:grid-cols-2" >
             <x-input label="Jenis Tindak Pidana" wire:model="form.jenis_tindak_pidana" />
             <x-input label="Nomor Register" wire:model="form.nomor_register" />
             <x-datepicker label="Tanggal Register" icon="o-calendar" :config="['altFormat' => 'd M Y']"
@@ -49,7 +49,7 @@ new class extends Component {
             <x-input label="Kondisi Awal" wire:model="form.kondisi_awal" />
             <x-input label="Status Tingkat Pemeriksaan" wire:model="form.status_tingkat_pemeriksaan" />
             <x-input label="Jaksa Penitip" wire:model="form.jaksa_penitip" />
-            <x-file label="Photo" wire:model='form.image' />
+            <x-input label="Photo" wire:model='form.image' type="file" />
         </x-form>
         <x-slot:actions>
             <x-button label="Cancel" link="/" class="btn btn-error" />
