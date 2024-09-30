@@ -28,10 +28,10 @@ class extends Component {
     <div class="container flex items-center justify-center min-h-screen">
         <x-card title="Login" subtitle="Enter your credentials to login." class="w-full md:w-[60%] lg:w-[50%] shadow-md" >
             <x-form wire:submit='save' no-separator class="mb-3" >
-                <x-input wire:model='form.email' label="Email" icon="o-envelope" type="email" />
-                <x-input wire:model='form.password' label="Password" icon="o-key" type="password" />
+                <x-input wire:model='form.email' label="Email" icon="o-envelope" type="email" class="border-gray-600 focus:border-gray-600 focus:outline-gray-600" />
+                <x-input wire:model='form.password' label="Password" icon="o-key" type="password" class="border-gray-600 focus:border-gray-600 focus:outline-gray-600" />
                 <x-slot:actions>
-                    <x-button label="Login" type="submit" class="w-full btn btn-primary" spinner="save" />
+                    <x-button label="Login" type="submit" class="w-full text-white bg-gray-600 btn hover:bg-gray-500" spinner="save" />
                 </x-slot:actions>
             </x-form>
             <span>

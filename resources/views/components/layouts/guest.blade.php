@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="light" >
 
 <head>
     <meta charset="utf-8">
@@ -16,9 +16,6 @@
         <x-slot:brand>
             <x-brand />
         </x-slot:brand>
-        <x-slot:actions>
-            <x-theme-toggle />
-        </x-slot:actions>
     </x-nav>
     <x-main full-width>
         <x-slot:content>

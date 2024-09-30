@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="light" >
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
@@ -18,9 +17,9 @@
     @endif
 </head>
 
-<body class="font-sans antialiased">
+<body class="font-sans antialiased bg-gray-300">
 
-    <x-nav sticky full-width>
+    <x-nav sticky full-width class="bg-gray-200" >
 
         <x-slot:brand>
             <label for="main-drawer" class="mr-3 lg:hidden">
@@ -31,17 +30,15 @@
         </x-slot:brand>
 
         <x-slot:actions>
-            <x-theme-toggle class="btn btn-circle btn-ghost btn-sm" />
             @guest
                 <x-button label="Login" :link="route('login')" icon="o-arrow-right-end-on-rectangle"
-                    class="btn btn-primary btn-sm ms-3" />
+                    class="text-white bg-gray-800 hover:bg-gray-600 btn btn-sm ms-3" />
             @endguest
         </x-slot:actions>
     </x-nav>
 
-    <x-main with-nav full-width>
-
-        <x-slot:sidebar drawer="main-drawer" collapsible class="bg-base-200">
+    <x-main with-nav full-width class="bg-gray-200" >
+        <x-slot:sidebar drawer="main-drawer" collapsible class="bg-gray-200">
             @if ($user = auth()->user())
                 <x-list-item :item="$user" value="name" sub-value="email" no-separator no-hover class="pt-2">
                     <x-slot:actions>
@@ -63,9 +60,16 @@
         </x-slot:sidebar>
         <x-slot:content>
             {{ $slot }}
+
+            @if (Route::is('home'))
+            <footer class="flex items-center justify-center w-full gap-3 py-5 my-10 text-lg text-white bg-gray-500 rounded shadow-md" >
+                <x-icon name="o-phone" />
+                <span class="font-bold" >No Pengaduan 0852 7946 4285</span>
+            </footer>
+
+            @endif
         </x-slot:content>
     </x-main>
-
     {{--  TOAST area --}}
     <x-toast />
 </body>

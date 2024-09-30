@@ -26,7 +26,7 @@ new class extends Component {
 <div class="space-y-6">
     <div class="flex justify-center">
         <div class="w-full md:w-2/3 lg:w-3/4">
-            <x-input wire:model.live.debounce.500ms='search' icon="o-bolt" placeholder="Search..." />
+            <x-input wire:model.live.debounce.500ms='search' icon="o-magnifying-glass" placeholder="Search..." class="border-gray-500 focus:border-gray-500 focus:outline-gray-500" />
         </div>
     </div>
 
@@ -52,7 +52,7 @@ new class extends Component {
                         alt="Basan picture" class="object-cover w-full aspect-video">
                     <div class="flex items-center justify-end w-full gap-3 mt-3">
                         <span class="text-sm me-5">
-                            <span class="me-2">
+                            <span class="me-1">
                                 {{ __('Register On') }}
                             </span>
                             {{ $item->tanggal_register->format('d M Y') }}

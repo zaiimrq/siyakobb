@@ -61,20 +61,20 @@ new class extends Component {
 <div>
     <div class="min-h-screen space-y-5">
         <x-header title="Basan / Baran" subtitle="Daftar barang sitaan / barang rampasan"
-            class="p-1 rounded shadow md:p-3">
+            class="p-1 bg-white rounded shadow md:p-3">
             <x-slot:middle class="!justify-end">
-                <x-input wire:model.lazy='search' icon="o-bolt" placeholder="Search..." type="search" />
+                <x-input class="border-gray-600 focus:border-gray-600 focus:outline-gray-600" wire:model.lazy='search' icon="o-bolt" placeholder="Search..." type="search" />
             </x-slot:middle>
             <x-slot:actions>
                 <x-button icon="o-funnel" wire:click="$toggle('drawerOpen')" />
                 @auth
                     @can('create', App\Models\Item::class)
-                        <x-button icon="o-plus" link="{{ route('items.create') }}" class="btn-primary" />
+                        <x-button icon="o-plus" link="{{ route('items.create') }}" class="text-white bg-gray-600 hover:bg-gray-500" />
                     @endcan
                 @endauth
             </x-slot:actions>
         </x-header>
-        <div class="p-1 rounded shadow md:p-3">
+        <div class="p-1 bg-white rounded shadow md:p-3">
             <x-table :headers="$headers" :rows="$items" per-page="perPage" :per-page-values="[5, 7, 10, 15]"
                 @row-click="$wire.show($event.detail.id)" class="mt-3" striped with-pagination>
                 @scope('cell_id', $item)

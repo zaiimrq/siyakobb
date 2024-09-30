@@ -26,12 +26,12 @@ class extends Component {
     <div class="container flex items-center justify-center min-h-screen">
         <x-card title="Register" subtitle="Create your credentials to login." class="w-full md:w-[60%] lg:w-[50%] shadow-md" >
             <x-form wire:submit='save' no-separator class="mb-3">
-                <x-input wire:model='form.name' label="Name" icon="o-user" type="name" />
-                <x-input wire:model='form.email' label="Email" icon="o-envelope" type="email" />
-                <x-input wire:model='form.password' label="Password" icon="o-key" type="password" />
-                <x-input wire:model='form.password_confirmation' label="Password confirmation" icon="o-key" type="password" />
+                <x-input class="border-gray-600 focus:border-gray-600 focus:outline-gray-600" wire:model='form.name' label="Name" icon="o-user" type="name" />
+                <x-input class="border-gray-600 focus:border-gray-600 focus:outline-gray-600" wire:model='form.email' label="Email" icon="o-envelope" type="email" />
+                <x-input class="border-gray-600 focus:border-gray-600 focus:outline-gray-600" wire:model='form.password' label="Password" icon="o-key" type="password" />
+                <x-input class="border-gray-600 focus:border-gray-600 focus:outline-gray-600" wire:model='form.password_confirmation' label="Password confirmation" icon="o-key" type="password" />
                 <x-slot:actions>
-                    <x-button label="Register" type="submit" class="w-full btn btn-primary" spinner="save" />
+                    <x-button label="Register" type="submit"  class="w-full text-white bg-gray-600 btn hover:bg-gray-500" spinner="save" />
                 </x-slot:actions>
             </x-form>
             <span>
