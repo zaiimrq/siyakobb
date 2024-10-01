@@ -40,8 +40,9 @@ class UserForm extends Form
     {
         if (Auth::attempt($this->only('email', 'password'))) {
             request()->session()->regenerate();
+            $user = Auth::user();
 
-            return redirect()->intended(route('items.index'));
+            return redirect()->intended($user->isAdmin() ? route('items.index') : '/');
         } else {
             throw new Exception('Email or password is wrong!');
         }

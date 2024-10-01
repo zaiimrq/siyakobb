@@ -12,7 +12,7 @@
 </head>
 
 <body class="font-sans antialiased">
-    <x-nav full-width sticky class="border-b-0 shadow-none" >
+    <x-nav full-width sticky class="bg-gray-500 border-b-0 shadow-none" >
         <x-slot:brand>
             <x-brand />
         </x-slot:brand>

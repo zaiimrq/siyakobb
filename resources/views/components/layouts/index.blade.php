@@ -20,7 +20,7 @@
 
 <body class="max-h-screen font-sans antialiased">
 
-    <x-nav sticky full-width class="bg-[#707477]">
+    <x-nav sticky full-width class="bg-gray-500">
 
         <x-slot:brand>
             <label for="main-drawer" class="mr-3 lg:hidden">
@@ -31,6 +31,11 @@
         </x-slot:brand>
 
         <x-slot:actions>
+            @auth
+                @if (request()->user()->isUser())
+                    <x-button icon="o-power" class="text-white bg-red-500 btn btn-ghost btn-sm" tooltip-left="logout" :link="route('logout')" />
+                @endif
+            @endauth
             @guest
                 <x-button label="Login" :link="route('login')" icon="o-arrow-right-end-on-rectangle"
                     class="text-white bg-gray-800 hover:bg-gray-600 btn btn-sm ms-3" />
@@ -39,30 +44,38 @@
     </x-nav>
 
     <x-main with-nav full-width>
-        <x-slot:sidebar drawer="main-drawer" collapsible class="bg-[#7a7e83]">
-            @if ($user = auth()->user())
-                <x-list-item :item="$user" value="name" sub-value="email" no-separator no-hover class="pt-2 text-white">
-                    <x-slot:actions>
-                        <x-button icon="o-power" class="btn-circle btn-ghost btn-xs" tooltip-left="logout"
-                            :link="route('logout')" />
-                    </x-slot:actions>
-                </x-list-item>
+        @auth
+            @if (request()->user()->isAdmin())
+                <x-slot:sidebar drawer="main-drawer" collapsible class="bg-[#7a7e83]">
+                    @if ($user = auth()->user())
+                        <x-list-item :item="$user" value="name" sub-value="email" no-separator no-hover
+                            class="pt-2 text-white">
+                            <x-slot:actions>
+                                <x-button icon="o-power" class="btn-circle btn-ghost btn-xs" tooltip-left="logout"
+                                    :link="route('logout')" />
+                            </x-slot:actions>
+                        </x-list-item>
 
-                <x-menu-separator />
+                        <x-menu-separator />
+                    @endif
+
+                    {{-- Activates the menu item when a route matches the `link` property --}}
+                    <x-menu activate-by-route>
+                        <x-menu-item title="Home" icon="o-home" link="/" class="hover:bg-gray-300" />
+                        @if (request()->user()?->isAdmin())
+                            <x-menu-item title="Items" icon="o-squares-2x2" link="{{ route('items.index') }}" />
+                        @endif
+                    </x-menu>
+                </x-slot:sidebar>
             @endif
+        @endauth
 
-            {{-- Activates the menu item when a route matches the `link` property --}}
-            <x-menu activate-by-route>
-                <x-menu-item title="Home" icon="o-home" link="/" class="hover:bg-gray-300" />
-                @if (request()->user()?->isAdmin())
-                    <x-menu-item title="Items" icon="o-squares-2x2" link="{{ route('items.index') }}" />
-                @endif
-            </x-menu>
-        </x-slot:sidebar>
         <x-slot:content @style([
             'background-image: url(\'images/bg.jpg\')' => Route::is('home'),
         ]) @class([
-            'bg-no-repeat opacity-80 max-h-screen overflow-y-scroll object-cover' => Route::is('home')])>
+            'bg-no-repeat opacity-80 max-h-screen overflow-y-scroll object-cover' => Route::is(
+                'home'),
+        ])>
             {{ $slot }}
         </x-slot:content>
     </x-main>
