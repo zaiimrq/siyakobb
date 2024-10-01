@@ -23,9 +23,11 @@
     <x-nav sticky full-width class="bg-gray-500">
 
         <x-slot:brand>
-            <label for="main-drawer" class="mr-3 lg:hidden">
-                <x-icon name="o-bars-3" class="cursor-pointer" />
-            </label>
+            @if (request()->user()?->isAdmin())
+                <label for="main-drawer" class="mr-3 lg:hidden">
+                    <x-icon name="o-bars-3" class="cursor-pointer" />
+                </label>
+            @endif
 
             <x-brand />
         </x-slot:brand>
@@ -33,7 +35,8 @@
         <x-slot:actions>
             @auth
                 @if (request()->user()->isUser())
-                    <x-button icon="o-power" class="text-white bg-red-500 btn btn-ghost btn-sm" tooltip-left="logout" :link="route('logout')" />
+                    <x-button icon="o-power" class="text-white bg-red-500 btn btn-ghost btn-sm" tooltip-left="logout"
+                        :link="route('logout')" />
                 @endif
             @endauth
             @guest
@@ -73,7 +76,7 @@
         <x-slot:content @style([
             'background-image: url(\'images/bg.jpg\')' => Route::is('home'),
         ]) @class([
-            'bg-no-repeat opacity-80 max-h-screen overflow-y-scroll object-cover' => Route::is(
+            'bg-no-repeat opacity-80 max-h-screen object-cover overflow-y-scroll' => Route::is(
                 'home'),
         ])>
             {{ $slot }}
