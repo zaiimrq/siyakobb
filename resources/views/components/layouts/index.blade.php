@@ -58,7 +58,9 @@
                 @endif
             </x-menu>
         </x-slot:sidebar>
-        <x-slot:content>
+        <x-slot:content @style([
+            'background-image: url(\'images/bg.jpg\')' => Route::is('home')
+        ]) @class(['bg-no-repeat opacity-80' => Route::is('home')]) >
             {{ $slot }}
 
             @if (Route::is('home'))
