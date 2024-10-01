@@ -46,6 +46,6 @@ new class extends Component {
     </x-form>
     <x-slot:actions>
         <x-button label="Cancel" link="/" class="btn btn-error" />
-        <x-button label="Create" form="form-item" type="submit" class="btn btn-primary" spinner="save" />
+        <x-button label="Create" form="form-item" type="submit" class="text-white bg-gray-800 btn" spinner="save" />
     </x-slot:actions>
 </x-card>

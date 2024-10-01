@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="light" >
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="light">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
@@ -17,9 +18,9 @@
     @endif
 </head>
 
-<body class="font-sans antialiased bg-gray-300">
+<body class="max-h-screen font-sans antialiased">
 
-    <x-nav sticky full-width class="bg-gray-200" >
+    <x-nav sticky full-width class="bg-[#707477]">
 
         <x-slot:brand>
             <label for="main-drawer" class="mr-3 lg:hidden">
@@ -37,10 +38,10 @@
         </x-slot:actions>
     </x-nav>
 
-    <x-main with-nav full-width class="bg-gray-200" >
-        <x-slot:sidebar drawer="main-drawer" collapsible class="bg-gray-200">
+    <x-main with-nav full-width>
+        <x-slot:sidebar drawer="main-drawer" collapsible class="bg-[#7a7e83]">
             @if ($user = auth()->user())
-                <x-list-item :item="$user" value="name" sub-value="email" no-separator no-hover class="pt-2">
+                <x-list-item :item="$user" value="name" sub-value="email" no-separator no-hover class="pt-2 text-white">
                     <x-slot:actions>
                         <x-button icon="o-power" class="btn-circle btn-ghost btn-xs" tooltip-left="logout"
                             :link="route('logout')" />
@@ -52,24 +53,17 @@
 
             {{-- Activates the menu item when a route matches the `link` property --}}
             <x-menu activate-by-route>
-                <x-menu-item title="Home" icon="o-home" link="/" />
+                <x-menu-item title="Home" icon="o-home" link="/" class="hover:bg-gray-300" />
                 @if (request()->user()?->isAdmin())
                     <x-menu-item title="Items" icon="o-squares-2x2" link="{{ route('items.index') }}" />
                 @endif
             </x-menu>
         </x-slot:sidebar>
         <x-slot:content @style([
-            'background-image: url(\'images/bg.jpg\')' => Route::is('home')
-        ]) @class(['bg-no-repeat opacity-80' => Route::is('home')]) >
+            'background-image: url(\'images/bg.jpg\')' => Route::is('home'),
+        ]) @class([
+            'bg-no-repeat opacity-80 max-h-screen overflow-y-scroll object-cover' => Route::is('home')])>
             {{ $slot }}
-
-            @if (Route::is('home'))
-            <footer class="flex items-center justify-center w-full gap-3 py-5 my-10 text-lg text-white bg-gray-500 rounded shadow-md" >
-                <x-icon name="o-phone" />
-                <span class="font-bold" >No Pengaduan 0852 7946 4285</span>
-            </footer>
-
-            @endif
         </x-slot:content>
     </x-main>
     {{--  TOAST area --}}
