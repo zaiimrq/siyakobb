@@ -18,7 +18,7 @@
     @endif
 </head>
 
-<body class="max-h-screen font-sans antialiased">
+<body class="max-h-screen overflow-hidden font-sans antialiased md:pb-10">
 
     <x-nav sticky full-width class="bg-gray-500">
 
@@ -82,6 +82,14 @@
             {{ $slot }}
         </x-slot:content>
     </x-main>
+
+    @guest
+    <footer
+        class="fixed bottom-0 flex items-center justify-center w-full gap-3 py-3 text-white bg-gray-500 rounded shadow-md md:text-lg">
+        <x-icon name="o-phone" />
+        <span class="font-bold">No Pengaduan 0852 7946 4285</span>
+    </footer>
+@endguest
     {{--  TOAST area --}}
     <x-toast />
 </body>

@@ -19,14 +19,13 @@ Route::prefix('items')
 // Authentication routes
 Route::middleware(['guest'])->group(function () {
     Volt::route('/auth/login', 'auth.login')->name('login');
-    Volt::route('/auth/register', 'auth.register')->name('register');
 });
 
 Route::get('/auth/logout', function () {
     Auth::logout();
     request()->session()->regenerateToken();
 
-    return to_route('login');
+    return to_route('home');
 })
     ->middleware(['auth'])
     ->name('logout');

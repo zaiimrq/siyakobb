@@ -30,7 +30,7 @@ new class extends Component {
         </div>
     </div>
 
-    <div class="grid grid-cols-1 gap-5 pb-10 md:grid-cols-3">
+    <div class="grid grid-cols-1 gap-5 md:grid-cols-3">
         @foreach ($items as $item)
             <x-card title="{{ $item->tersangka }}" class="px-2 overflow-x-hidden shadow-md">
                 <div class="w-full overflow-x-scroll">
