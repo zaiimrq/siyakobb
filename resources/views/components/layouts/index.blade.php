@@ -18,7 +18,10 @@
     @endif
 </head>
 
-<body class="max-h-screen overflow-hidden font-sans antialiased md:pb-10">
+<body @class([
+    'font-sans antialiased md:pb-10 max-h-screen',
+    'overflow-hidden' => Route::is('home')
+])>
 
     <x-nav sticky full-width class="bg-gray-500">
 
