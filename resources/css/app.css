@@ -16,4 +16,7 @@
 .mary-table-pagination button {
     @apply bg-base-100
 }
+.nav-custom > div {
+    @apply py-3 !important
+}
 

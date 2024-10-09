@@ -25,7 +25,7 @@ new class extends Component {
 
 <div class="space-y-6">
     <div class="flex justify-center">
-        <div class="w-full md:w-2/3 lg:w-3/4">
+        <div class="w-full lg:w-3/4">
             <x-input wire:model.live.debounce.500ms='search' icon="o-magnifying-glass" placeholder="Search..." class="border-gray-500 focus:border-gray-500 focus:outline-gray-500" />
         </div>
     </div>

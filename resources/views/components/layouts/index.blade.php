@@ -20,10 +20,10 @@
 
 <body @class([
     'font-sans antialiased md:pb-10 max-h-screen',
-    'overflow-hidden' => Route::is('home')
+    'overflow-hidden' => Route::is('home'),
 ])>
 
-    <x-nav sticky full-width class="bg-gray-500">
+    <x-nav sticky full-width class="bg-gray-500 nav-custom">
 
         <x-slot:brand>
             @if (request()->user()?->isAdmin())
@@ -77,9 +77,9 @@
         @endauth
 
         <x-slot:content @style([
-            'background-image: url(\'images/bg.jpg\')' => Route::is('home'),
+            'background-image: url(\'images/bg.png\')' => Route::is('home'),
         ]) @class([
-            'bg-no-repeat opacity-80 max-h-screen object-cover overflow-y-scroll' => Route::is(
+            'bg-no-repeat max-h-screen object-cover overflow-y-scroll' => Route::is(
                 'home'),
         ])>
             {{ $slot }}
@@ -87,12 +87,12 @@
     </x-main>
 
     @guest
-    <footer
-        class="fixed bottom-0 flex items-center justify-center w-full gap-3 py-3 text-white bg-gray-500 rounded shadow-md md:text-lg">
-        <x-icon name="o-phone" />
-        <span class="font-bold">No Pengaduan 0852 7946 4285</span>
-    </footer>
-@endguest
+        <footer
+            class="fixed bottom-0 flex items-center justify-center w-full gap-3 py-2 text-white bg-gray-500 rounded shadow-md md:text-lg">
+            <x-icon name="o-phone" />
+            <span class="font-semibold">No Pengaduan (0967) 533647</span>
+        </footer>
+    @endguest
     {{--  TOAST area --}}
     <x-toast />
 </body>
