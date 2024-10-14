@@ -48,7 +48,7 @@ new class extends Component {
                     </table>
                 </div>
                 <x-slot:figure class="flex-col">
-                    <img src="{{ $item->image ? config('app.asset_url') . $item->image : 'https://picsum.photos/300/200' }}"
+                    <img src="{{ $item->image ? Storage::url($item->image) : 'https://picsum.photos/300/200' }}"
                         alt="Basan picture" class="object-cover w-full aspect-video">
                     <div class="flex items-center justify-end w-full gap-3 mt-3">
                         <span class="text-sm me-5">
