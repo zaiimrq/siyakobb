@@ -90,7 +90,7 @@
         <footer
             class="fixed bottom-0 flex items-center justify-center w-full gap-3 py-2 text-white bg-gray-500 rounded shadow-md md:text-lg">
             <x-icon name="o-phone" />
-            <span class="font-semibold">No Pengaduan (0967) 533647</span>
+            <span class="font-semibold">No Pengaduan 0813 4338 0019</span>
         </footer>
     @endguest
     {{--  TOAST area --}}
