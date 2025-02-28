@@ -14,7 +14,7 @@
                     </span>
                     <span class="text-[10px] uppercase tracking-wider transition-colors duration-300"
                           :class="scrolled ? 'text-gray-500' : 'text-gray-300'">
-                        Kejaksaan Negeri Sorong
+                        Rupbasan Jayapura
                     </span>
                 </div>
             </a>

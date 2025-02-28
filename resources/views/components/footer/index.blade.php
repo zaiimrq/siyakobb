@@ -5,7 +5,7 @@
             style="background-image: url('data:image/svg+xml,%3Csvg width=\" 30\" height=\"30\" viewBox=\"0 0 30 30\"
             fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cpath d=\"M1.22676 0C1.91374 0 2.45351 0.539773
             2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0
-            0.539773 0.539773 0 1.22676 0Z\" fill=\"rgba(255,255,255,0.5)\"%3E%3C/path%3E%3C/svg%3E');"></div>
+            0.539773 0 1.22676 0Z\" fill=\"rgba(255,255,255,0.5)\"%3E%3C/path%3E%3C/svg%3E');"></div>
     </div>
 
     <div class="relative">
@@ -20,7 +20,7 @@
                         </div>
                         <div>
                             <h3 class="text-xl font-bold text-white">SIYAKOBB</h3>
-                            <p class="text-xs text-gray-400 uppercase tracking-wider">Kejaksaan Negeri Sorong</p>
+                            <p class="text-xs text-gray-400 uppercase tracking-wider">Rupbasan Jayapura</p>
                         </div>
                     </div>
                     <p class="text-sm text-gray-400 leading-relaxed">
@@ -54,8 +54,7 @@
                             </div>
                             <div>
                                 <p class="text-white font-medium">Alamat</p>
-                                <p class="text-sm text-gray-400">Jl. Basuki Rahmat No.KM.10, Klasaman, Kota Sorong,
-                                    Papua Barat 98416</p>
+                                <p class="text-sm text-gray-400">Jl. Tim, Asei Kecil, Kec. Sentani Tim., Kabupaten Jayapura, Papua 99351</p>
                             </div>
                         </li>
                         <li class="flex items-start space-x-3">
@@ -65,7 +64,7 @@
                             </div>
                             <div>
                                 <p class="text-white font-medium">Telepon</p>
-                                <p class="text-sm text-gray-400">(0951) 321172</p>
+                                <p class="text-sm text-gray-400">0813 4338 0019</p>
                             </div>
                         </li>
                         <li class="flex items-start space-x-3">
@@ -90,7 +89,7 @@
                         </div>
                         <div>
                             <p class="text-white/80 text-sm">Pengaduan 24 Jam</p>
-                            <p class="text-white text-2xl font-bold">0951-321172</p>
+                            <p class="text-white text-2xl font-bold">0813 4338 0019</p>
                         </div>
                         <a href="tel:0951321172"
                             class="block text-center py-2 bg-white/20 backdrop-blur-sm rounded-xl text-white hover:bg-white/30 transition-colors duration-300">
@@ -106,14 +105,8 @@
             <div class="container mx-auto px-4 py-6">
                 <div class="flex flex-col md:flex-row justify-between items-center gap-4">
                     <p class="text-sm text-gray-400">
-                        &copy; {{ date('Y') }} SIYAKOBB - Kejaksaan Negeri Sorong. All rights reserved.
+                        &copy; {{ date('Y') }} SIYAKOBB - Rupbasan Jayapura. All rights reserved.
                     </p>
-                    <div class="flex items-center space-x-6 text-sm">
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Privacy
-                            Policy</a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Terms of
-                            Service</a>
-                    </div>
                 </div>
             </div>
         </div>
