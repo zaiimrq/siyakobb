@@ -70,7 +70,7 @@
             <!-- Items Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($items as $item)
-                            <a href="{{ route('items.show', $item) }}"
+                            <a wire:navigate href="{{ route('items.show', $item) }}"
                                 class="group bg-white rounded-2xl shadow-sm hover:shadow-lg overflow-hidden transition-all duration-300">
                                 <!-- Card Image -->
                                 <div class="aspect-[4/3] overflow-hidden bg-gray-100">
@@ -104,7 +104,7 @@
 
                                     <div class="mt-4 flex items-center justify-between">
                                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
-                                                                                    {{ $item->kondisi_awal == 'BAIK'
+                                                                                                                        {{ $item->kondisi_awal == 'BAIK'
                     ? 'bg-green-50 text-green-700 ring-1 ring-green-600/20'
                     : 'bg-yellow-50 text-yellow-700 ring-1 ring-yellow-600/20' }}">
                                             {{ $item->kondisi_awal }}

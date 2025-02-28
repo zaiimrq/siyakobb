@@ -20,7 +20,7 @@
             </a>
 
             <!-- Search in Navbar -->
-            <div class="hidden md:flex flex-1 max-w-2xl mx-12 transition-all duration-500 origin-right"
+            <div x-cloak class="hidden md:flex flex-1 max-w-2xl mx-12 transition-all duration-500 origin-right"
                  :class="scrolled ? 'scale-100 opacity-100' : 'scale-95 opacity-0'">
                 <form action="/" method="GET" class="w-full flex gap-3">
                     <div class="flex-1 relative">

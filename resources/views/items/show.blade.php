@@ -1,23 +1,23 @@
 <x-layouts.app>
     <!-- Main Content -->
     <div class="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
-        <div class="container mx-auto px-4 py-8">
+        <div class="container mx-auto px-3 sm:px-4 py-4 sm:py-8">
             <!-- Back Button -->
-            <div class="mb-6">
-                <a href="{{ url()->previous() }}"
+            <div class="mb-4 sm:mb-6">
+                <a wire:navigate href="{{ url()->previous() }}"
                     class="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors duration-200">
                     <i class="fas fa-arrow-left text-sm"></i>
                     <span class="text-sm font-medium">Kembali</span>
                 </a>
             </div>
 
-            <div class="max-w-6xl mx-auto space-y-8">
+            <div class="max-w-6xl mx-auto space-y-4 sm:space-y-8">
                 <!-- Main Card -->
-                <div class="bg-white rounded-3xl shadow-xl overflow-hidden">
-                    <div class="p-8 sm:p-10">
-                        <div class="flex flex-col lg:flex-row gap-12">
+                <div class="bg-white rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden">
+                    <div class="p-4 sm:p-8 md:p-10">
+                        <div class="flex flex-col lg:flex-row gap-6 sm:gap-12">
                             <!-- Left Column: Image & Quick Info -->
-                            <div class="lg:w-2/5 space-y-6">
+                            <div class="lg:w-2/5 space-y-4 sm:space-y-6">
                                 <!-- Image with Lightbox -->
                                 <div class="group">
                                     <div class="aspect-square rounded-2xl overflow-hidden bg-gray-100 shadow-inner
@@ -54,7 +54,7 @@
                             </div>
 
                             <!-- Right Column: Details -->
-                            <div class="lg:w-3/5 space-y-8">
+                            <div class="lg:w-3/5 space-y-6 sm:space-y-8">
                                 <!-- Header Info -->
                                 <div class="space-y-4">
                                     <div class="flex flex-wrap items-center gap-3">
@@ -128,9 +128,9 @@
                 </div>
 
                 <!-- Additional Details Cards -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                     <!-- Penitipan Info -->
-                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <div class="bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6">
                         <div class="flex items-center gap-4 mb-6">
                             <span class="p-3 bg-blue-50 text-blue-600 rounded-xl">
                                 <i class="fas fa-user-tie text-xl"></i>
@@ -152,7 +152,7 @@
                     </div>
 
                     <!-- Timeline/Status -->
-                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <div class="bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6">
                         <div class="flex items-center gap-4 mb-6">
                             <span class="p-3 bg-blue-50 text-blue-600 rounded-xl">
                                 <i class="fas fa-clock text-xl"></i>
