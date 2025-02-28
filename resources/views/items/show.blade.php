@@ -13,7 +13,7 @@
 
             <div class="max-w-6xl mx-auto space-y-4 sm:space-y-8">
                 <!-- Main Card -->
-                <div class="bg-white rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden">
+                <div class="bg-white rounded-2xl sm:rounded-3xl shadow-lg overflow-hidden">
                     <div class="p-4 sm:p-8 md:p-10">
                         <div class="flex flex-col lg:flex-row gap-6 sm:gap-12">
                             <!-- Left Column: Image & Quick Info -->
