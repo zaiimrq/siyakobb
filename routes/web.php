@@ -1,31 +1,29 @@
 <?php
 
-use App\Http\Middleware\EnsureAdminMiddleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Livewire\Volt\Volt;
+use App\Models\Item;
 
-Route::view('/', 'index')->name('home');
-Route::prefix('items')
-    ->name('items.')
-    ->middleware(['auth', EnsureAdminMiddleware::class])
-    ->group(function () {
-        Volt::route('/', 'items.index')->name('index');
-        Volt::route('/create', 'items.create')->name('create');
-        Volt::route('/{item}', 'items.show')->name('show');
-        Volt::route('/{item}/edit', 'items.edit')->name('edit');
-    });
+Route::get('/', function () {
+    $query = Item::query();
 
-// Authentication routes
-Route::middleware(['guest'])->group(function () {
-    Volt::route('/auth/login', 'auth.login')->name('login');
+    if (request('search')) {
+        $query->where(function($q) {
+            $search = request('search');
+            $q->where('jenis', 'like', '%' . $search . '%')
+              ->orWhere('nomor_register', 'like', '%' . $search . '%')
+              ->orWhere('tersangka', 'like', '%' . $search . '%');
+        });
+    }
+
+    if (request('category')) {
+        $query->where('golongan', request('category'));
+    }
+
+    $items = $query->latest('tanggal_register')->take(24)->get();
+    return view('welcome', compact('items'));
 });
 
-Route::get('/auth/logout', function () {
-    Auth::logout();
-    request()->session()->regenerateToken();
-
-    return to_route('home');
-})
-    ->middleware(['auth'])
-    ->name('logout');
+Route::get('/items/{item}', function (Item $item) {
+    return view('items.show', compact('item'));
+})->name('items.show');

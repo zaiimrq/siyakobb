@@ -22,4 +22,15 @@ class Item extends Model
             'tanggal_register' => 'datetime',
         ];
     }
+
+// Add accessor for image URL
+public function getImageUrlAttribute()
+{
+    if ($this->image && filter_var($this->image, FILTER_VALIDATE_URL)) {
+        return $this->image;
+    }
+
+    // Fallback to Picsum
+    return "https://picsum.photos/800/800?random=" . $this->id;
+}
 }
