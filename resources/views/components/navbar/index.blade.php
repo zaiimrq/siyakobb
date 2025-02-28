@@ -22,7 +22,7 @@
             <!-- Search in Navbar -->
             <div x-cloak class="hidden md:flex flex-1 max-w-2xl mx-12 transition-all duration-500 origin-right"
                  :class="scrolled ? 'scale-100 opacity-100' : 'scale-95 opacity-0'">
-                <form action="/" method="GET" class="w-full flex gap-3">
+                <form action="/" method="GET" class="w-full flex gap-3" x-data="{ loading: false }" @submit="loading = true">
                     <div class="flex-1 relative">
                         <input type="text"
                                name="search"
@@ -34,9 +34,15 @@
                         </div>
                     </div>
                     <button type="submit"
-                            class="px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all duration-300 flex items-center gap-2">
-                        <span class="hidden lg:inline">Cari</span>
-                        <i class="fas fa-search lg:hidden"></i>
+                            class="px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all duration-300 flex items-center gap-2"
+                            x-bind:disabled="loading">
+                        <span x-cloak x-show="!loading">
+                            <i class="fas fa-search lg:hidden"></i>
+                            <span class="hidden lg:inline">Cari</span>
+                        </span>
+                        <span x-cloak x-show="loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                        </span>
                     </button>
                 </form>
             </div>

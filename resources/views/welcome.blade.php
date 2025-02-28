@@ -16,50 +16,58 @@
         <div class="max-w-3xl mx-auto">
             <div
                 class="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-2 hover:bg-white transition-all duration-300">
-                <form action="/" method="GET">
-                    <div class="flex flex-col md:flex-row md:items-center md:divide-x md:divide-gray-100">
-                        <!-- Search Input -->
-                        <div class="flex-1 px-4 py-2">
-                            <div class="relative">
-                                <input type="text" name="search" placeholder="Cari barang sitaan..."
-                                    class="w-full pl-10 pr-4 py-3 bg-transparent border-0 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 text-sm"
-                                    value="{{ request('search') }}">
-                                <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none">
-                                    <i class="fas fa-search text-gray-400"></i>
+                <div x-data="{ loading: false }">
+                    <form action="/" method="GET" @submit="loading = true">
+                        <div class="flex flex-col md:flex-row md:items-center md:divide-x md:divide-gray-100">
+                            <!-- Search Input -->
+                            <div class="flex-1 px-4 py-2">
+                                <div class="relative">
+                                    <input type="text" name="search" placeholder="Cari barang sitaan..."
+                                        class="w-full pl-10 pr-4 py-3 bg-transparent border-0 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 text-sm"
+                                        value="{{ request('search') }}">
+                                    <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none">
+                                        <i class="fas fa-search text-gray-400"></i>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Category Select -->
-                        <div class="md:w-56 px-4 py-2">
-                            <div class="relative">
-                                <select name="category"
-                                    class="w-full appearance-none bg-transparent border-0 py-3 pl-8 pr-6 cursor-pointer focus:outline-none focus:ring-0 text-sm text-gray-700">
-                                    <option value="">Semua Kategori</option>
-                                    <option value="KAYU" {{ request('category') == 'KAYU' ? 'selected' : '' }}>Kayu
-                                    </option>
-                                    <option value="KENDARAAN" {{ request('category') == 'KENDARAAN' ? 'selected' : '' }}>
-                                        Kendaraan</option>
-                                    <option value="ELEKTRONIK" {{ request('category') == 'ELEKTRONIK' ? 'selected' : '' }}>Elektronik</option>
-                                </select>
-                                <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none">
-                                    <i class="fas fa-folder text-gray-400"></i>
-                                </div>
-                                <div class="absolute inset-y-0 right-0 flex items-center pointer-events-none">
-                                    <i class="fas fa-chevron-down text-gray-400 text-xs"></i>
+                            <!-- Category Select -->
+                            <div class="md:w-56 px-4 py-2">
+                                <div class="relative">
+                                    <select name="category"
+                                        class="w-full appearance-none bg-transparent border-0 py-3 pl-8 pr-6 cursor-pointer focus:outline-none focus:ring-0 text-sm text-gray-700">
+                                        <option value="">Semua Kategori</option>
+                                        <option value="KAYU" {{ request('category') == 'KAYU' ? 'selected' : '' }}>Kayu
+                                        </option>
+                                        <option value="KENDARAAN" {{ request('category') == 'KENDARAAN' ? 'selected' : '' }}>
+                                            Kendaraan</option>
+                                        <option value="ELEKTRONIK" {{ request('category') == 'ELEKTRONIK' ? 'selected' : '' }}>Elektronik</option>
+                                    </select>
+                                    <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none">
+                                        <i class="fas fa-folder text-gray-400"></i>
+                                    </div>
+                                    <div class="absolute inset-y-0 right-0 flex items-center pointer-events-none">
+                                        <i class="fas fa-chevron-down text-gray-400 text-xs"></i>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Search Button -->
-                        <div class="p-2">
-                            <button type="submit"
-                                class="w-full md:w-auto px-8 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 active:bg-blue-800 transition-all duration-300 text-sm font-medium">
-                                Cari
-                            </button>
+                            <!-- Search Button -->
+                            <div class="p-2">
+                                <button type="submit"
+                                    class="w-full md:w-auto px-8 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 active:bg-blue-800 transition-all duration-300 text-sm font-medium"
+                                    x-bind:disabled="loading">
+                                    <span x-cloak x-show="!loading">
+                                        <i class="fas fa-search"></i> Cari
+                                    </span>
+                                    <span x-cloak x-show="loading">
+                                        <i class="fas fa-spinner fa-spin"></i> Mencari...
+                                    </span>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -104,7 +112,7 @@
 
                                     <div class="mt-4 flex items-center justify-between">
                                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
-                                                                                                                        {{ $item->kondisi_awal == 'BAIK'
+                                                                                                                                    {{ $item->kondisi_awal == 'BAIK'
                     ? 'bg-green-50 text-green-700 ring-1 ring-green-600/20'
                     : 'bg-yellow-50 text-yellow-700 ring-1 ring-yellow-600/20' }}">
                                             {{ $item->kondisi_awal }}
