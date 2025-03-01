@@ -73,14 +73,5 @@
     </div>
 
     <!-- Main Content -->
-    <div class="">
-        <div class="container mx-auto px-4 pt-32 pb-16">
-            <!-- Items Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                @foreach($items as $item)
-                    <livewire:components.card :item="$item" wire:key="{{ $item->id }}" />
-                @endforeach
-            </div>
-        </div>
-    </div>
+    <livewire:components.items-grid />
 </x-layouts.app>
