@@ -19,16 +19,18 @@ class DatabaseSeeder extends Seeder
             $this->call([ItemSeeder::class]);
         }
 
+        $this->call([CategorySeeder::class]);
+
         User::create([
             'name' => 'Admin',
             'email' => 'rupbasanjpr@gmail.com',
-            'password' => 'pastinoken',
+            'password' => bcrypt('pastinoken'),
             'role' => Role::Admin,
         ]);
         User::create([
             'name' => 'Zulfa',
             'email' => 'zulfa@gmail.com',
-            'password' => 'zulfa30',
+            'password' => bcrypt('zulfa30'),
             'role' => Role::Admin,
         ]);
     }

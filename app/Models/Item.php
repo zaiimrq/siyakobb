@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Category;
 use App\Observers\ItemObserver;
-use Illuminate\Database\Eloquent\Attributes\ObservedBy;
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 
 #[ObservedBy(ItemObserver::class)]
 class Item extends Model
@@ -23,14 +25,19 @@ class Item extends Model
         ];
     }
 
-// Add accessor for image URL
-public function getImageUrlAttribute()
-{
-    if ($this->image && filter_var($this->image, FILTER_VALIDATE_URL)) {
-        return $this->image;
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
     }
 
-    // Fallback to Picsum
-    return "https://picsum.photos/800/800?random=" . $this->id;
-}
+    // Add accessor for image URL
+    public function getImageUrlAttribute()
+    {
+        if ($this->image && filter_var($this->image, FILTER_VALIDATE_URL)) {
+            return $this->image;
+        }
+
+        // Fallback to Picsum
+        return "https://picsum.photos/800/800?random=" . $this->id;
+    }
 }

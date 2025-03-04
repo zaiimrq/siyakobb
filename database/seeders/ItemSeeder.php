@@ -18,7 +18,7 @@ class ItemSeeder extends Seeder
             'jenis_tindak_pidana' => fake()->randomElement(['PIDSUS', 'PIDUM', 'PIDSUS TIPIKOR']),
             'nomor_register' => 'W30/RUP01/RBS3/DR/K/' . fake()->numberBetween(1, 12) . '/' . fake()->year() . '/' . str_pad($i, 4, '0', STR_PAD_LEFT),
             'jenis' => fake()->randomElement(['KAYU OLAHAN MATOA', 'KAYU JATI', 'KAYU MERBAU', 'KAYU MERANTI']),
-            'golongan' => 'KAYU',
+            'golongan' => fake()->randomElement(['KAYU','BBM']),
             'jumlah' => fake()->numberBetween(50, 500),
             'gudang' => fake()->randomElement(['GUDANG A', 'GUDANG B', 'TERBUKA DEPAN GUDANG A', 'TERBUKA DEPAN GUDANG B']),
             'tersangka' => 'Tsk. AN. ' . fake()->name(),
