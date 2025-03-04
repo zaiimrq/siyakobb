@@ -26,7 +26,8 @@ class AdminPanelProvider extends PanelProvider
             ->spa()
             ->databaseTransactions()
             ->sidebarCollapsibleOnDesktop()
-
+            ->profile(isSimple: false)
+            
             ->default()
             ->id('admin')
             ->path('admin')
