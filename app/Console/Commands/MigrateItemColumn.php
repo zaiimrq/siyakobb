@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Item;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -28,12 +27,14 @@ class MigrateItemColumn extends Command
      */
     public function handle()
     {
-        if (!Schema::hasColumn('items', 'category_id')) {
+        if (! Schema::hasColumn('items', 'category_id')) {
             $this->error('category_id column does not exist in items table');
+
             return;
         }
-        if (!Schema::hasColumn('items', 'golongan')) {
+        if (! Schema::hasColumn('items', 'golongan')) {
             $this->error('Item column has been migrated');
+
             return;
         }
 
@@ -41,8 +42,7 @@ class MigrateItemColumn extends Command
 
         $items = DB::table('items')->get();
 
-
-        $items->each(function ($item){
+        $items->each(function ($item) {
             $this->migrateGolonganColumn($item);
         });
         $this->info('Drop golongan column');
@@ -57,7 +57,7 @@ class MigrateItemColumn extends Command
 
         if ($category) {
             DB::table('items')->where('id', $item->id)->update([
-                'category_id' => $category->id
+                'category_id' => $category->id,
             ]);
         }
     }

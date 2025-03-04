@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-use App\Models\Category;
 use App\Observers\ItemObserver;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 #[ObservedBy(ItemObserver::class)]
 class Item extends Model
@@ -38,6 +37,6 @@ class Item extends Model
         }
 
         // Fallback to Picsum
-        return "https://picsum.photos/800/800?random=" . $this->id;
+        return 'https://picsum.photos/800/800?random='.$this->id;
     }
 }

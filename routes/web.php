@@ -1,9 +1,8 @@
 <?php
 
-use App\Models\Item;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
+use App\Models\Item;
+use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
 //     $query = Item::query();
@@ -26,7 +25,6 @@ use App\Http\Controllers\WelcomeController;
 //     $items = $query->latest('tanggal_register')->take(24)->get();
 //     return view('welcome', compact('items'));
 // });
-
 
 Route::get('/', WelcomeController::class)->name('welcome');
 
