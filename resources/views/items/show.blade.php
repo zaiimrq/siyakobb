@@ -7,7 +7,7 @@
                 <a wire:navigate href="{{ url()->previous() }}"
                     class="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors duration-200">
                     <i class="fas fa-arrow-left text-sm"></i>
-                    <span class="text-sm font-medium">Kembali</span>
+                    <span class="text-sm font-medium hover:underline">Kembali</span>
                 </a>
             </div>
 
@@ -37,12 +37,13 @@
                                 <div class="grid grid-cols-2 gap-4">
                                     <div class="bg-gray-50 rounded-2xl p-4 text-center">
                                         <div class="text-sm text-gray-500 mb-1">Status</div>
-                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium
-                                            {{ $item->kondisi_awal == 'BAIK'
-    ? 'bg-green-50 text-green-700 ring-1 ring-green-600/20'
-    : 'bg-yellow-50 text-yellow-700 ring-1 ring-yellow-600/20' }}">
-                                            <i class="fas fa-circle text-[8px] mr-2"></i>
-                                            {{ $item->kondisi_awal }}
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
+                                        {{ match ($item->kondisi_awal) {
+    \App\Enums\ItemStatus::BAIK => 'bg-green-50 text-green-700 ring-1 ring-green-600/20',
+    \App\Enums\ItemStatus::RUSAK => 'bg-red-50 text-red-700 ring-1 ring-red-600/20',
+    \App\Enums\ItemStatus::SEBAGIAN => 'bg-yellow-50 text-yellow-700 ring-1 ring-yellow-600/20',
+} }}">
+                                            {{ strtoupper($item->kondisi_awal->value) }}
                                         </span>
                                     </div>
                                     <div class="bg-gray-50 rounded-2xl p-4 text-center">

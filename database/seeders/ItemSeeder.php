@@ -23,7 +23,7 @@ class ItemSeeder extends Seeder
                 'gudang' => fake()->randomElement(['GUDANG A', 'GUDANG B', 'TERBUKA DEPAN GUDANG A', 'TERBUKA DEPAN GUDANG B']),
                 'tersangka' => 'Tsk. AN. '.fake()->name(),
                 'nilai_perkiraan_awal' => fake()->numberBetween(1000000, 50000000),
-                'kondisi_awal' => fake()->randomElement(['BAIK', 'RUSAK RINGAN', 'RUSAK BERAT']),
+                'kondisi_awal' => fake()->randomElement(['baik', 'rusak', 'baik / sebagian rusak']),
                 'status_tingkat_pemeriksaan' => fake()->randomElement(['PENYIDIKAN', 'PENUNTUTAN', 'PUTUSAN']),
                 'jaksa_penitip' => fake()->name().', SH',
             ]);

@@ -21,6 +21,7 @@ class Item extends Model
     {
         return [
             'tanggal_register' => 'datetime',
+            'kondisi_awal' => \App\Enums\ItemStatus::class
         ];
     }
 

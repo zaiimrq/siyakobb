@@ -54,10 +54,12 @@ new class extends Component {
 
             <div class="mt-4 flex items-center justify-between">
                 <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
-{{$item->kondisi_awal == 'BAIK'
-    ? 'bg-green-50 text-green-700 ring-1 ring-green-600/20'
-    : 'bg-yellow-50 text-yellow-700 ring-1 ring-yellow-600/20' }}">
-                    {{ $item->kondisi_awal }}
+                    {{ match ($item->kondisi_awal) {
+                        \App\Enums\ItemStatus::BAIK => 'bg-green-50 text-green-700 ring-1 ring-green-600/20',
+                        \App\Enums\ItemStatus::RUSAK => 'bg-red-50 text-red-700 ring-1 ring-red-600/20',
+                        \App\Enums\ItemStatus::SEBAGIAN => 'bg-yellow-50 text-yellow-700 ring-1 ring-yellow-600/20',
+                    } }}">
+                    {{ strtoupper($item->kondisi_awal->value) }}
                 </span>
                 <span class="text-blue-600 group-hover:translate-x-1 transition-transform duration-300">
                     <i class="fas fa-arrow-right"></i>
