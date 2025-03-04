@@ -1,23 +1,19 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Resources\CategoryResource\RelationManagers;
 
-use App\Filament\Resources\ItemResource\Pages;
-use App\Models\Item;
 use Filament\Forms;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class ItemResource extends Resource
+class ItemsRelationManager extends RelationManager
 {
-    protected static ?string $model = Item::class;
+    protected static string $relationship = 'items';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
-    public static function form(Form $form): Form
+    public function form(Form $form): Form
     {
         return $form
             ->schema([
@@ -34,13 +30,6 @@ class ItemResource extends Resource
                     ])->columns(2),
                 Section::make()
                     ->schema([
-                        Forms\Components\Select::make('category_id')
-                            ->label('Golongan')
-                            ->native(false)
-                            ->options(
-                                \App\Models\Category::pluck('name', 'id')
-                            )
-                            ->required(),
                         Forms\Components\TextInput::make('jumlah')
                             ->required()
                             ->numeric()
@@ -69,21 +58,20 @@ class ItemResource extends Resource
                 Section::make()
                     ->schema([
                         Forms\Components\FileUpload::make('image')
-                            ->image(),
+                            ->image()
+                            ->required(),
                     ]),
             ]);
     }
 
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return $table
-            ->defaultSort('created_at', 'desc')
+            ->recordTitleAttribute('name')
             ->columns([
                 Tables\Columns\TextColumn::make('tersangka')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('jenis_tindak_pidana')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('category.name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('jumlah')
                     ->numeric()
@@ -109,6 +97,9 @@ class ItemResource extends Resource
             ->filters([
                 //
             ])
+            ->headerActions([
+                Tables\Actions\CreateAction::make(),
+            ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
@@ -118,23 +109,6 @@ class ItemResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ])
-            ->deferLoading();
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
-    public static function getPages(): array
-    {
-        return [
-            'index' => Pages\ListItems::route('/'),
-            'create' => Pages\CreateItem::route('/create'),
-            'edit' => Pages\EditItem::route('/{record}/edit'),
-        ];
+            ]);
     }
 }
