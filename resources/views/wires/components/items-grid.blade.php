@@ -20,7 +20,7 @@ new class extends Component {
 
         if (request()->filled('search')) {
             $search = request()->search;
-            $query->where(function($q) use ($search) {
+            $query->where(function ($q) use ($search) {
                 $q->whereAny(['jenis', 'nomor_register', 'tersangka'], "LIKE", "%$search%");
             });
         }
@@ -29,12 +29,12 @@ new class extends Component {
             $query->whereRelation('category', 'name', request()->category);
         }
 
-        $items = $query->latest('tanggal_register')
-                      ->with('category') // eager load category
-                      ->take($this->perPage) // use perPage for pagination
-                      ->get();
+        $items = $query->latest()
+            ->with('category') // eager load category
+            ->take($this->perPage) // use perPage for pagination
+            ->get();
 
-        return $items; // return the items to be used in the view
+        return $items;
     }
 
     public function with(): array
@@ -48,6 +48,15 @@ new class extends Component {
 
 <div>
     <div class="container mx-auto px-4 pt-32 pb-16">
+        @if (request()->hasAny(['search', 'category']))
+            <div class="mb-4 sm:mb-6">
+                <a wire:navigate href="{{ url()->previous() }}"
+                    class="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors duration-200">
+                    <i class="fas fa-arrow-left text-sm"></i>
+                    <span class="text-sm font-medium hover:underline">Kembali</span>
+                </a>
+            </div>
+        @endif
         <!-- Items Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach($items as $item)

@@ -22,7 +22,7 @@
                                 <div class="group">
                                     <div class="aspect-square rounded-2xl overflow-hidden bg-gray-100 shadow-inner
                                                 cursor-zoom-in relative">
-                                        <img src="https://picsum.photos/800/800?random={{ $item->id }}"
+                                        <img src="{{ $item->image_url }}"
                                             alt="{{ $item->jenis }}" class="w-full h-full object-cover transition-transform duration-700
                                                     group-hover:scale-110">
                                         <div

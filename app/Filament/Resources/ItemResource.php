@@ -2,13 +2,14 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ItemResource\Pages;
-use App\Models\Item;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Models\Item;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Section;
+use App\Filament\Resources\ItemResource\Pages;
 
 class ItemResource extends Resource
 {
@@ -20,71 +21,82 @@ class ItemResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('jenis_tindak_pidana')
-                    ->required(),
-                Forms\Components\TextInput::make('nomor_register')
-                    ->required(),
-                Forms\Components\TextInput::make('tanggal_register')
-                    ->required(),
-                Forms\Components\Textarea::make('jenis')
-                    ->required()
-                    ->columnSpanFull(),
-                Forms\Components\TextInput::make('golongan')
-                    ->required(),
-                Forms\Components\TextInput::make('jumlah')
-                    ->required()
-                    ->numeric()
-                    ->default(1),
-                Forms\Components\TextInput::make('gudang')
-                    ->required(),
-                Forms\Components\TextInput::make('tersangka')
-                    ->required(),
-                Forms\Components\TextInput::make('nilai_perkiraan_awal')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('kondisi_awal')
-                    ->required(),
-                Forms\Components\TextInput::make('status_tingkat_pemeriksaan')
-                    ->required(),
-                Forms\Components\TextInput::make('jaksa_penitip')
-                    ->required(),
-                Forms\Components\FileUpload::make('image')
-                    ->image(),
+                Section::make()
+                    ->schema([
+                        Forms\Components\TextInput::make('nomor_register')
+                            ->required(),
+                        Forms\Components\Datepicker::make('tanggal_register')
+                            ->required(),
+                            Forms\Components\TextInput::make('jenis_tindak_pidana')
+                            ->required(),
+                        Forms\Components\TextInput::make('jenis')
+                            ->required(),
+                    ])->columns(2),
+                Section::make()
+                    ->schema([
+                        Forms\Components\Select::make('category_id')
+                            ->label('Golongan')
+                            ->native(false)
+                            ->options(
+                                \App\Models\Category::pluck('name', 'id')
+                            )
+                            ->required(),
+                        Forms\Components\TextInput::make('jumlah')
+                            ->required()
+                            ->numeric()
+                            ->default(1),
+                        Forms\Components\TextInput::make('gudang')
+                            ->required(),
+                        Forms\Components\TextInput::make('tersangka')
+                            ->required(),
+                    ])->columns(2),
+
+                Section::make()
+                    ->schema([
+                        Forms\Components\TextInput::make('nilai_perkiraan_awal')
+                        ->required()
+                        ->numeric(),
+
+                        Forms\Components\Select::make('kondisi_awal')
+                            ->native(false)
+                            ->options(\App\Enums\ItemStatus::class)
+                            ->required(),
+                        Forms\Components\TextInput::make('status_tingkat_pemeriksaan')
+                            ->required(),
+                        Forms\Components\TextInput::make('jaksa_penitip')
+                            ->required(),
+                    ])->columns(2),
+                Section::make()
+                    ->schema([
+                        Forms\Components\FileUpload::make('image')
+                            ->image(),
+                    ])
             ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
+            ->defaultSort('created_at', 'desc')
             ->columns([
-                Tables\Columns\TextColumn::make('id')
-                    ->label('ID')
+                Tables\Columns\TextColumn::make('tersangka')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('jenis_tindak_pidana')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('nomor_register')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('tanggal_register')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('golongan')
+                Tables\Columns\TextColumn::make('category.name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('jumlah')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('gudang')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('tersangka')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('nilai_perkiraan_awal')
-                    ->numeric()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('kondisi_awal')
+                    ->badge()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('status_tingkat_pemeriksaan')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('jaksa_penitip')
                     ->searchable(),
-                Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

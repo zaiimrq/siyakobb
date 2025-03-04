@@ -23,9 +23,9 @@ enum ItemStatus: string implements HasLabel, HasColor
     public function getColor(): string
     {
         return match ($this) {
-            self::BAIK => 'green',
-            self::RUSAK => 'red',
-            self::SEBAGIAN => 'yellow',
+            self::BAIK => 'success',
+            self::RUSAK => 'danger',
+            self::SEBAGIAN => 'warning',
         };
     }
 

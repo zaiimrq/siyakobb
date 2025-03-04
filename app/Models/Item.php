@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use App\Observers\ItemObserver;
-use Illuminate\Database\Eloquent\Attributes\ObservedBy;
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 
 #[ObservedBy(ItemObserver::class)]
 class Item extends Model
@@ -33,8 +34,8 @@ class Item extends Model
     // Add accessor for image URL
     public function getImageUrlAttribute()
     {
-        if ($this->image && filter_var($this->image, FILTER_VALIDATE_URL)) {
-            return $this->image;
+        if ($this->image !== null) {
+            return Storage::url($this->image);
         }
 
         // Fallback to Picsum

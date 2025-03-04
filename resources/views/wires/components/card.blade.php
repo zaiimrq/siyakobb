@@ -2,8 +2,11 @@
 
 use App\Models\Item;
 use Livewire\Volt\Component;
+use Livewire\Attributes\Lazy;
 
-new class extends Component {
+new
+#[Lazy]
+class extends Component {
     public Item $item;
 
     public function with(): array
@@ -11,6 +14,11 @@ new class extends Component {
         return [
             'item' => $this->item,
         ];
+    }
+
+    public function placeholder()
+    {
+        return view('wires.components.card-skeleton');
     }
 }
 
@@ -20,7 +28,7 @@ new class extends Component {
     <a wire:navigate href="{{ route('items.show', $item) }}">
         <!-- Card Image -->
         <div class="aspect-[4/3] overflow-hidden bg-gray-100">
-            <img loading="lazy" src="https://picsum.photos/800/600?random={{ $item->id }}" alt="{{ $item->jenis }}"
+            <img loading="lazy" src="{{ $item->image_url }}" alt="{{ $item->jenis }}"
                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
         </div>
 
