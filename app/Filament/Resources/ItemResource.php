@@ -9,6 +9,7 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class ItemResource extends Resource
@@ -107,7 +108,11 @@ class ItemResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                SelectFilter::make('kondisi_awal')
+                    ->placeholder('Pilih kondisi')
+                    ->options(\App\Enums\ItemStatus::class)
+                    ->native(false)
+                    ->multiple(),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
