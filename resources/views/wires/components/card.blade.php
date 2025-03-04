@@ -28,7 +28,7 @@ new class extends Component {
         <div class="p-6">
             <div class="flex items-center justify-between mb-4">
                 <span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-medium">
-                    {{ $item->golongan }}
+                    {{ $item->category->name }}
                 </span>
                 <span class="text-sm text-gray-500">{{ $item->tanggal_register->format('d M Y') }}</span>
             </div>
@@ -38,6 +38,10 @@ new class extends Component {
             </h3>
 
             <div class="space-y-2 text-sm text-gray-600">
+                <p class="flex items-center">
+                    <i class="fas fa-person w-5 text-gray-400"></i>
+                    <span class="ml-2 truncate">{{ $item->tersangka }}</span>
+                </p>
                 <p class="flex items-center">
                     <i class="fas fa-fingerprint w-5 text-gray-400"></i>
                     <span class="ml-2 truncate">{{ $item->nomor_register }}</span>
@@ -50,7 +54,7 @@ new class extends Component {
 
             <div class="mt-4 flex items-center justify-between">
                 <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
-                                                                                                            {{ $item->kondisi_awal == 'BAIK'
+{{$item->kondisi_awal == 'BAIK'
     ? 'bg-green-50 text-green-700 ring-1 ring-green-600/20'
     : 'bg-yellow-50 text-yellow-700 ring-1 ring-yellow-600/20' }}">
                     {{ $item->kondisi_awal }}

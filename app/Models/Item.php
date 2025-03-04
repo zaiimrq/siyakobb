@@ -16,7 +16,7 @@ class Item extends Model
 
     protected $table = 'items';
 
-    protected $guarded = ['id'];
+    protected $guarded = [];
 
     protected function casts(): array
     {

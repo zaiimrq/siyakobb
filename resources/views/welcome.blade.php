@@ -17,7 +17,7 @@
             <div
                 class="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-2 hover:bg-white transition-all duration-300">
                 <div x-data="{ loading: false }">
-                    <form action="/" method="GET" @submit="loading = true">
+                    <form action="{{ route('welcome') }}" method="GET" @submit="loading = true">
                         <div class="flex flex-col md:flex-row md:items-center md:divide-x md:divide-gray-100">
                             <!-- Search Input -->
                             <div class="flex-1 px-4 py-2">
@@ -37,11 +37,11 @@
                                     <select name="category"
                                         class="w-full appearance-none bg-transparent border-0 py-3 pl-8 pr-6 cursor-pointer focus:outline-none focus:ring-0 text-sm text-gray-700">
                                         <option value="">Semua Kategori</option>
-                                        <option value="KAYU" {{ request('category') == 'KAYU' ? 'selected' : '' }}>Kayu
-                                        </option>
-                                        <option value="KENDARAAN" {{ request('category') == 'KENDARAAN' ? 'selected' : '' }}>
-                                            Kendaraan</option>
-                                        <option value="ELEKTRONIK" {{ request('category') == 'ELEKTRONIK' ? 'selected' : '' }}>Elektronik</option>
+                                        @foreach(\App\Models\Category::all() as $category)
+                                            <option value="{{ $category->name }}" {{ request('category') == $category->name ? 'selected' : '' }}>
+                                                {{ $category->name }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                     <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none">
                                         <i class="fas fa-folder text-gray-400"></i>

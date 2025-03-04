@@ -60,7 +60,7 @@
                                     <div class="flex flex-wrap items-center gap-3">
                                         <span class="px-4 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-medium
                                                      ring-1 ring-blue-600/20">
-                                            {{ $item->golongan }}
+                                            {{ $item->category->name }}
                                         </span>
                                         <span class="flex items-center text-gray-500 text-sm">
                                             <i class="far fa-calendar-alt mr-2"></i>

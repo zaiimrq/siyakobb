@@ -6,27 +6,44 @@ use Livewire\WithPagination;
 
 new class extends Component {
     use WithPagination;
-
-    public $search = '';
-    public $category = '';
     public $perPage = 9;
+
 
     public function loadMore()
     {
         $this->perPage += 9;
     }
 
+    public function getItems()
+    {
+        $query = Item::query();
+
+        if (request()->filled('search')) {
+            $search = request()->search;
+            $query->where(function($q) use ($search) {
+                $q->whereAny(['jenis', 'nomor_register', 'tersangka'], "LIKE", "%$search%");
+            });
+        }
+
+        if (request()->filled('category')) {
+            $query->whereRelation('category', 'name', request()->category);
+        }
+
+        $items = $query->latest('tanggal_register')
+                      ->with('category') // eager load category
+                      ->take($this->perPage) // use perPage for pagination
+                      ->get();
+
+        return $items; // return the items to be used in the view
+    }
+
     public function with(): array
     {
         return [
-            'items' => Item::query()
-                ->when($this->search, fn($query) => $query->where('jenis', 'like', "%{$this->search}%"))
-                ->when($this->category, fn($query) => $query->where('golongan', $this->category))
-                ->latest()
-                ->take($this->perPage)
-                ->get()
+            'items' => $this->getItems(),
         ];
     }
+
 }; ?>
 
 <div>
