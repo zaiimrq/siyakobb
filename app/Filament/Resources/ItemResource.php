@@ -85,6 +85,7 @@ class ItemResource extends Resource
                 Tables\Columns\TextColumn::make('jenis_tindak_pidana')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('category.name')
+                    ->label('Golongan')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('jumlah')
                     ->numeric()

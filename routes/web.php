@@ -2,32 +2,22 @@
 
 use App\Http\Controllers\WelcomeController;
 use App\Models\Item;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Route;
-
-// Route::get('/', function () {
-//     $query = Item::query();
-
-//     if (request('search')) {
-//         $query->where(function($q) {
-//             $search = request('search');
-//             $q->where('jenis', 'like', '%' . $search . '%')
-//               ->orWhere('nomor_register', 'like', '%' . $search . '%')
-//               ->orWhere('tersangka', 'like', '%' . $search . '%');
-//         });
-//     }
-
-//     if (request('category')) {
-//         $query->whereHas('category', function($q) {
-//             $q->where('name', request('category'));
-//         });
-//     }
-
-//     $items = $query->latest('tanggal_register')->take(24)->get();
-//     return view('welcome', compact('items'));
-// });
 
 Route::get('/', WelcomeController::class)->name('welcome');
 
-Route::get('/items/{item}', function (Item $item) {
-    return view('items.show', compact('item'));
-})->name('items.show');
+Route::get(
+    '/items/{item}',
+    fn (Item $item) => view('items.show', ['item' => $item])
+)->name('items.show');
+
+Route::get('/items/all/download', function () {
+    $items = Item::with('category')->get();
+    $pdf = Pdf::loadView('pdfs.all-item', ['items' => $items])->setPaper('a4', 'landscape');
+
+    return $pdf->download();
+
+})
+    ->middleware(['auth'])
+    ->name('items.download');
