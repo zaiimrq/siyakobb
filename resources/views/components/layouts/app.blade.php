@@ -43,16 +43,11 @@
         }
     }
 }">
-    @if(request()->is('/'))
-        <x-navbar />
-    @endif
-
+    @includeWhen(request()->routeIs('welcome'), 'partials.navbar')
     <main>
         {{ $slot }}
     </main>
-
-
-    <x-footer />
+    @include('partials.footer')
 
     @livewireScriptConfig()
 </body>

@@ -1,11 +1,10 @@
 <?php
 
-use App\Http\Controllers\WelcomeController;
 use App\Models\Item;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', WelcomeController::class)->name('welcome');
+Route::view('/', 'welcome')->name('welcome');
 
 Route::get(
     '/items/{item}',
