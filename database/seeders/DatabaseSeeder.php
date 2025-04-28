@@ -15,12 +15,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        if (app()->environment('local')) {
-            $this->call([ItemSeeder::class]);
-        }
-
-        $this->call([CategorySeeder::class]);
-
         User::create([
             'name' => 'Admin',
             'email' => 'rupbasanjpr@gmail.com',
