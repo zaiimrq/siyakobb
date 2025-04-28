@@ -6,12 +6,12 @@ use Livewire\WithPagination;
 
 new class extends Component {
     use WithPagination;
-    public $perPage = 9;
+    public $perPage = 12;
 
 
     public function loadMore()
     {
-        $this->perPage += 9;
+        $this->perPage *= 2;
     }
 
     public function getItems()
@@ -58,7 +58,7 @@ new class extends Component {
             </div>
         @endif
         <!-- Items Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             @foreach($items as $item)
                 <livewire:components.card :item="$item" wire:key="{{ $item->id }}" />
             @endforeach

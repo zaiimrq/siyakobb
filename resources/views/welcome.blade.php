@@ -1,7 +1,7 @@
 <x-layouts.app>
     <!-- Hero Section -->
     <div class="min-h-[60vh] flex items-center justify-center text-white py-32 bg-fixed bg-center bg-cover bg-no-repeat"
-        style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/banner.jpg')">
+        style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{{ Vite::asset('resources/img/banner.jpg') }}')">
         <div class="container mx-auto px-4 text-center animate-fade-in">
             <h1 class="text-5xl font-bold mb-6">Sistem Informasi Barang Sitaan</h1>
             <p class="text-xl text-gray-200 max-w-2xl mx-auto">
