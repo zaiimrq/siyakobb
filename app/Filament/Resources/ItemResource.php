@@ -26,7 +26,7 @@ class ItemResource extends Resource
                     ->schema([
                         Forms\Components\TextInput::make('nomor_register')
                             ->required(),
-                        Forms\Components\Datepicker::make('tanggal_register')
+                        Forms\Components\DatePicker::make('tanggal_register')
                             ->required(),
                         Forms\Components\TextInput::make('jenis_tindak_pidana')
                             ->required(),
