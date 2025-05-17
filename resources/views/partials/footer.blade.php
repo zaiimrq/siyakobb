@@ -16,7 +16,7 @@
                 <div class="space-y-6">
                     <div class="flex items-center space-x-4">
                         <div class="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center">
-                            <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-8 w-auto">
+                            <img src="{{ Vite::asset('resources/img/logo.webp') }}" alt="Logo" class="h-8 w-auto">
                         </div>
                         <div>
                             <h3 class="text-xl font-bold text-white">SIYAKOBB</h3>
