@@ -1,31 +1,23 @@
 <?php
 
-use App\Http\Middleware\EnsureAdminMiddleware;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\WelcomeController;
+use App\Models\Item;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Route;
-use Livewire\Volt\Volt;
 
-Route::view('/', 'index')->name('home');
-Route::prefix('items')
-    ->name('items.')
-    ->middleware(['auth', EnsureAdminMiddleware::class])
-    ->group(function () {
-        Volt::route('/', 'items.index')->name('index');
-        Volt::route('/create', 'items.create')->name('create');
-        Volt::route('/{item}', 'items.show')->name('show');
-        Volt::route('/{item}/edit', 'items.edit')->name('edit');
-    });
+Route::get('/', WelcomeController::class)->name('welcome');
 
-// Authentication routes
-Route::middleware(['guest'])->group(function () {
-    Volt::route('/auth/login', 'auth.login')->name('login');
-});
+Route::get(
+    '/items/{item}',
+    fn (Item $item) => view('items.show', ['item' => $item])
+)->name('items.show');
 
-Route::get('/auth/logout', function () {
-    Auth::logout();
-    request()->session()->regenerateToken();
+Route::get('/items/all/download', function () {
+    $items = Item::with('category')->get();
+    $pdf = Pdf::loadView('pdfs.all-item', ['items' => $items])->setPaper('a4', 'landscape');
 
-    return to_route('home');
+    return $pdf->download();
+
 })
     ->middleware(['auth'])
-    ->name('logout');
+    ->name('items.download');

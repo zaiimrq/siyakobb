@@ -30,7 +30,7 @@ class ItemObserver
      */
     public function deleted(Item $item): void
     {
-        if (! is_null($item->image)) {
+        if ($item->image !== null) {
             Storage::disk('public')->delete($item->image);
         }
     }
