@@ -39,7 +39,7 @@ class AppServiceProvider extends ServiceProvider
 
     private function configureVites(): void
     {
-        Vite::useAggressivePrefetching();
+        Vite::useWaterfallPrefetching();
     }
 
     private function configureModels(): void
@@ -47,10 +47,11 @@ class AppServiceProvider extends ServiceProvider
         Model::shouldBeStrict(
             ! app()->isProduction()
         );
+        Model::automaticallyEagerLoadRelationships();
+
         Relation::morphMap([
             'item' => \App\Models\Item::class,
             'user' => \App\Models\User::class,
-            // 'group' => \App\Models\Group::class
         ]);
     }
 
