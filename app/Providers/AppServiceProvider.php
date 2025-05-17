@@ -47,7 +47,6 @@ class AppServiceProvider extends ServiceProvider
         Model::shouldBeStrict(
             ! app()->isProduction()
         );
-        Model::automaticallyEagerLoadRelationships();
 
         Relation::morphMap([
             'item' => \App\Models\Item::class,
