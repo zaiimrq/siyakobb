@@ -11,7 +11,11 @@ return new class extends Migration
 {
     public function shouldRun(): bool
     {
-        return $this->hasRequiredColumns() && DB::table("items")->count() > 0;
+        if (! $this->hasRequiredColumns()) {
+            return false;
+        }
+
+        return DB::table('items')->count() > 0;
     }
 
     /**
@@ -30,17 +34,17 @@ return new class extends Migration
      */
     private function hasRequiredColumns(): bool
     {
-        return Schema::hasColumn("items", "category_id") &&
-            Schema::hasColumn("items", "golongan");
+        return Schema::hasColumn('items', 'category_id') &&
+            Schema::hasColumn('items', 'golongan');
     }
 
     private function getGolonganAndInsertIntoCategoryTable(): void
     {
-        $categories = Item::select("golongan")->distinct()->pluck("golongan");
+        $categories = Item::select('golongan')->distinct()->pluck('golongan');
 
         $categories->each(function ($category) {
             Category::create([
-                "name" => $category,
+                'name' => $category,
             ]);
         });
     }
@@ -50,7 +54,7 @@ return new class extends Migration
      */
     private function migrateCategories(): void
     {
-        DB::table("items")->get()->each(function ($item) {
+        DB::table('items')->get()->each(function ($item) {
             $this->updateCategoryId($item);
         });
     }
@@ -60,14 +64,14 @@ return new class extends Migration
      */
     private function updateCategoryId($item): void
     {
-        $category = DB::table("categories")
-            ->where("name", $item->golongan)
+        $category = DB::table('categories')
+            ->where('name', $item->golongan)
             ->first();
 
         if ($category) {
-            DB::table("items")
-                ->where("id", $item->id)
-                ->update(["category_id" => $category->id]);
+            DB::table('items')
+                ->where('id', $item->id)
+                ->update(['category_id' => $category->id]);
         }
     }
 
@@ -76,8 +80,8 @@ return new class extends Migration
      */
     private function dropGolonganColumn(): void
     {
-        Schema::table("items", function (Blueprint $table) {
-            $table->dropColumn("golongan");
+        Schema::table('items', function (Blueprint $table) {
+            $table->dropColumn('golongan');
         });
     }
 };
