@@ -24,9 +24,11 @@ return new class extends Migration
     public function up(): void
     {
 
-        $this->getGolonganAndInsertIntoCategoryTable();
-        $this->migrateCategories();
-        $this->dropGolonganColumn();
+        if($this->hasRequiredColumns()){
+            $this->getGolonganAndInsertIntoCategoryTable();
+            $this->migrateCategories();
+            $this->dropGolonganColumn();
+        }
     }
 
     /**
