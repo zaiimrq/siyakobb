@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Category;
+use App\Models\Item;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
@@ -10,7 +11,7 @@ return new class extends Migration
 {
     public function shouldRun(): bool
     {
-        return $this->hasRequiredColumns() && DB::table('categories')->count() > 0;
+        return $this->hasRequiredColumns() && DB::table('items')->count() > 0;
     }
 
     /**
@@ -19,6 +20,7 @@ return new class extends Migration
     public function up(): void
     {
 
+        $this->getGolonganAndInsertIntoCategoryTable();
         $this->migrateCategories();
         $this->dropGolonganColumn();
     }
@@ -30,6 +32,17 @@ return new class extends Migration
     {
         return Schema::hasColumn('items', 'category_id') &&
             Schema::hasColumn('items', 'golongan');
+    }
+
+    private function getGolonganAndInsertIntoCategoryTable(): void
+    {
+        $categories = Item::select('golongan')->distinct()->pluck('golongan');
+
+        $categories->each(function ($category) {
+            Category::create([
+                'name' => $category,
+            ]);
+        });
     }
 
     /**

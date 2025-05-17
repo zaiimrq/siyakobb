@@ -12,7 +12,7 @@ class ItemSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 1; $i <= 100; $i++) {
+        for ($i = 1; $i <= 50; $i++) {
             Item::create([
                 'tanggal_register' => fake()->dateTimeBetween('-2 years', 'now')->format('Y-m-d'),
                 'jenis_tindak_pidana' => fake()->randomElement(['PIDSUS', 'PIDUM', 'PIDSUS TIPIKOR']),

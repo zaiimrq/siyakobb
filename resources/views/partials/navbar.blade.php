@@ -24,7 +24,7 @@
                  :class="scrolled ? 'scale-100 opacity-100' : 'scale-95 opacity-0'">
                 <form action="/" method="GET" class="w-full flex gap-3" x-data="{ loading: false }" @submit="loading = true">
                     <div class="flex-1 relative">
-                        <input type="text"
+                        <input type="search"
                                name="search"
                                placeholder="Cari barang sitaan..."
                                class="w-full pl-10 pr-4 py-2 bg-gray-50 border-0 rounded-xl focus:ring-2 focus:ring-blue-400/20 focus:bg-white focus:outline-none transition-all duration-300"

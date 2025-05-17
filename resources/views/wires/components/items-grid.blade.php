@@ -3,6 +3,7 @@
 use App\Models\Item;
 use Livewire\Volt\Component;
 use Livewire\WithPagination;
+use Livewire\Attributes\Computed;
 
 new class extends Component {
     use WithPagination;
@@ -11,9 +12,9 @@ new class extends Component {
 
     public function loadMore()
     {
-        $this->perPage *= 2;
+        $this->perPage += $this->perPage;
     }
-
+    
     public function getItems()
     {
         $query = Item::query();
@@ -48,19 +49,10 @@ new class extends Component {
 
 <div>
     <div class="container mx-auto px-4 pt-32 pb-16">
-        @if (request()->hasAny(['search', 'category']))
-            <div class="mb-4 sm:mb-6">
-                <a wire:navigate href="{{ url()->previous() }}"
-                    class="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors duration-200">
-                    <i class="fas fa-arrow-left text-sm"></i>
-                    <span class="text-sm font-medium hover:underline">Kembali</span>
-                </a>
-            </div>
-        @endif
         <!-- Items Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             @foreach($items as $item)
-                <livewire:components.card :item="$item" wire:key="{{ $item->id }}" />
+                <livewire:components.card :item="$item" wire:key="card-{{ $item->id }}" />
             @endforeach
         </div>
 

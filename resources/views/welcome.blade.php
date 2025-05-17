@@ -1,5 +1,3 @@
-
-
 <x-layouts.app>
 
     <!-- Hero Section -->
@@ -25,7 +23,7 @@
                             <!-- Search Input -->
                             <div class="flex-1 px-4 py-2">
                                 <div class="relative">
-                                    <input type="text" name="search" placeholder="Cari barang sitaan..."
+                                    <input type="search" name="search" placeholder="Cari barang sitaan..."
                                         class="w-full pl-10 pr-4 py-3 bg-transparent border-0 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 text-sm"
                                         value="{{ request('search') }}">
                                     <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none">

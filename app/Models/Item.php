@@ -2,14 +2,11 @@
 
 namespace App\Models;
 
-use App\Observers\ItemObserver;
-use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Storage;
 
-#[ObservedBy(ItemObserver::class)]
 class Item extends Model
 {
     use HasUuids;
@@ -24,6 +21,21 @@ class Item extends Model
             'tanggal_register' => 'datetime',
             'kondisi_awal' => \App\Enums\ItemStatus::class,
         ];
+    }
+
+    protected static function booted(): void
+    {
+        static::updated(function (Item $item) {
+            if ($item->isDirty('image')) {
+                Storage::disk('public')->delete($item->getOriginal('image'));
+            }
+        });
+
+        static::deleted(function (Item $item) {
+            if ($item->image !== null) {
+                Storage::disk('public')->delete($item->image);
+            }
+        });
     }
 
     public function category(): BelongsTo
