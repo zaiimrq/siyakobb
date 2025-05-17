@@ -1,4 +1,7 @@
+
+
 <x-layouts.app>
+
     <!-- Hero Section -->
     <div class="min-h-[60vh] flex items-center justify-center text-white py-32 bg-fixed bg-center bg-cover bg-no-repeat"
         style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('{{ Vite::asset('resources/img/banner.jpg') }}')">
