@@ -46,11 +46,10 @@ class Item extends Model
     // Add accessor for image URL
     public function getImageUrlAttribute()
     {
-        if ($this->image !== null) {
-            return Storage::url($this->image);
+        if ($this->image === null && app()->environment('local')) {
+            return "https://picsum.photos/800/800?random=$this->id";
         }
 
-        // Fallback to Picsum
-        return 'https://picsum.photos/800/800?random='.$this->id;
+        return Storage::url($this->image);
     }
 }

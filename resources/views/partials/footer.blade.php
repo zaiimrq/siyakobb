@@ -16,7 +16,8 @@
                 <div class="space-y-6">
                     <div class="flex items-center space-x-4">
                         <div class="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center">
-                            <img src="{{ Vite::asset('resources/img/logo.webp') }}" alt="Logo" class="h-8 w-auto">
+                            <img loading="lazy" encoding="async" src="{{ Vite::asset('resources/img/logo.webp') }}"
+                                alt="Logo" class="h-8 w-auto">
                         </div>
                         <div>
                             <h3 class="text-xl font-bold text-white">SIYAKOBB</h3>
@@ -54,7 +55,8 @@
                             </div>
                             <div>
                                 <p class="text-white font-medium">Alamat</p>
-                                <p class="text-sm text-gray-400">Jl. Tim, Asei Kecil, Kec. Sentani Tim., Kabupaten Jayapura, Papua 99351</p>
+                                <p class="text-sm text-gray-400">Jl. Tim, Asei Kecil, Kec. Sentani Tim., Kabupaten
+                                    Jayapura, Papua 99351</p>
                             </div>
                         </li>
                         <li class="flex items-start space-x-3">

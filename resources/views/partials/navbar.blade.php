@@ -5,7 +5,12 @@
             <!-- Logo -->
             <a href="/" class="flex items-center space-x-3 group">
                 <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center transform transition-transform group-hover:rotate-12">
-                    <img src="{{ Vite::asset('resources/img/logo.webp') }}" alt="Logo" class="h-8 w-auto">
+                    <img
+                    loading="lazy"
+                    encoding="async"
+                    src="{{ Vite::asset('resources/img/logo.webp') }}"
+                    alt="Logo"
+                    class="h-8 w-auto">
                 </div>
                 <div class="flex flex-col">
                     <span class="text-xl font-bold transition-colors duration-300"
