@@ -93,7 +93,7 @@
         }
 
         .col-kondisi {
-            width: 8%;
+            width: 3%;
         }
 
         .col-status {
@@ -101,7 +101,7 @@
         }
 
         .col-jaksa {
-            width: 10%;
+            width: 15%;
         }
     </style>
 </head>
