@@ -2,10 +2,9 @@
 
 namespace App\Policies;
 
-use App\Models\Item;
 use App\Models\User;
 
-class ItemPolicy
+class UserPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -18,7 +17,7 @@ class ItemPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Item $item): bool
+    public function view(User $user, User $model): bool
     {
         return $user->isAdmin();
     }
@@ -31,15 +30,10 @@ class ItemPolicy
         return $user->isAdmin();
     }
 
-    public function edit(User $user, Item $item): bool
-    {
-        return $user->isAdmin();
-    }
-
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Item $item): bool
+    public function update(User $user, User $model): bool
     {
         return $user->isAdmin();
     }
@@ -47,7 +41,7 @@ class ItemPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Item $item): bool
+    public function delete(User $user, User $model): bool
     {
         return $user->isAdmin();
     }

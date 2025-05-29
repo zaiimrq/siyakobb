@@ -27,7 +27,7 @@ class ListItems extends ListRecords
                         ->label('Pilih Field')
                         ->bulkToggleable()
                         ->columns(2)
-
+                        ->minItems(1)
                         ->options([
                             'nomor_register' => 'Nomor Register',
                             'tanggal_register' => 'Tanggal Register',
@@ -46,7 +46,7 @@ class ListItems extends ListRecords
                             'nomor_register', 'tanggal_register', 'jenis_tindak_pidana', 'jenis', 'jumlah', 'gudang', 'tersangka', 'nilai_perkiraan_awal', 'nilai_perkiraan_akhir', 'kondisi_awal', 'status_tingkat_pemeriksaan', 'jaksa_penitip',
                         ]),
                     Select::make('category_id')
-                        ->label('Pilih Kategori')
+                        ->label('Pilih Golongan')
                         ->options(\App\Models\Category::pluck('name', 'id'))
                         ->native(false)
                         ->nullable(),
@@ -57,6 +57,7 @@ class ListItems extends ListRecords
                         ->nullable(),
                 ])
                 ->action(function (array $data) {
+
                     $params = [];
                     if (isset($data['category_id'])) {
                         $params['categoryId'] = $data['category_id'];

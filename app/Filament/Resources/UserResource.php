@@ -2,36 +2,39 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\CategoryResource\Pages;
-use App\Filament\Resources\CategoryResource\RelationManagers\ItemsRelationManager;
-use App\Models\Category;
+use App\Filament\Resources\UserResource\Pages;
+use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class CategoryResource extends Resource
+class UserResource extends Resource
 {
-    protected static ?string $model = Category::class;
+    protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-tag';
+    protected static ?string $navigationIcon = 'heroicon-o-user';
 
-    protected static ?string $navigationGroup = 'Barang';
-
-    protected static ?string $navigationLabel = 'Golongan';
-
-    protected static ?string $breadcrumb = 'Golongan';
+    protected static ?string $navigationGroup = 'Settings';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                \Filament\Forms\Components\Section::make()
-                    ->schema([
-                        Forms\Components\TextInput::make('name')
-                            ->required(),
-                    ]),
+                Forms\Components\TextInput::make('name')
+                    ->required(),
+                Forms\Components\TextInput::make('email')
+                    ->email()
+                    ->required(),
+                Forms\Components\TextInput::make('password')
+                    ->password()
+                    ->required(),
+                Forms\Components\Select::make('role')
+                    ->options(\App\Enums\UserRole::class)
+                    ->default(\App\Enums\UserRole::User)
+                    ->native(false)
+                    ->required(),
             ]);
     }
 
@@ -40,6 +43,10 @@ class CategoryResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('email')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('role')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -54,30 +61,28 @@ class CategoryResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()->slideOver(),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ])
-            ->deferLoading();
+            ]);
     }
 
     public static function getRelations(): array
     {
         return [
-            ItemsRelationManager::class,
+            //
         ];
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCategories::route('/'),
-            'create' => Pages\CreateCategory::route('/create'),
-            'edit' => Pages\EditCategory::route('/{record}/edit'),
+            'index' => Pages\ListUsers::route('/'),
+            'create' => Pages\CreateUser::route('/create'),
         ];
     }
 }

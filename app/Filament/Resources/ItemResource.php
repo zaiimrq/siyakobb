@@ -18,6 +18,8 @@ class ItemResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-archive-box';
 
+    protected static ?string $navigationGroup = 'Barang';
+
     public static function form(Form $form): Form
     {
         return $form
