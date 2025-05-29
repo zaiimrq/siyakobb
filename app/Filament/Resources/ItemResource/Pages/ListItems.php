@@ -38,12 +38,11 @@ class ListItems extends ListRecords
                             'tersangka' => 'Tersangka',
                             'kondisi_awal' => 'Kondisi Awal',
                             'nilai_perkiraan_awal' => 'Nilai Perkiraan Awal',
-                            'nilai_perkiraan_akhir' => 'Nilai Perkiraan Akhir',
                             'status_tingkat_pemeriksaan' => 'Status Tingkat Pemeriksaan',
                             'jaksa_penitip' => 'Jaksa Penitip',
                         ])
                         ->default([
-                            'nomor_register', 'tanggal_register', 'jenis_tindak_pidana', 'jenis', 'jumlah', 'gudang', 'tersangka', 'nilai_perkiraan_awal', 'nilai_perkiraan_akhir', 'kondisi_awal', 'status_tingkat_pemeriksaan', 'jaksa_penitip',
+                            'nomor_register', 'tanggal_register', 'jenis_tindak_pidana', 'jenis', 'jumlah', 'gudang', 'tersangka', 'nilai_perkiraan_awal', 'kondisi_awal', 'status_tingkat_pemeriksaan', 'jaksa_penitip',
                         ]),
                     Select::make('category_id')
                         ->label('Pilih Golongan')
