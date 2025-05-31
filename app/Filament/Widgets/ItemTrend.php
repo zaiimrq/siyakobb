@@ -29,7 +29,7 @@ class ItemTrend extends ChartWidget
 
     private function getCountPerMonth(): array
     {
-        $year = now()->subYear();
+        $year = now()->year;
         $counts = [];
 
         for ($month = 1; $month <= 12; $month++) {
