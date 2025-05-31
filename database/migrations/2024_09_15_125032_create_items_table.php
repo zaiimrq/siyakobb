@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id');
             $table->string('jenis_tindak_pidana');
             $table->string('nomor_register');
-            $table->string('tanggal_register');
+            $table->date('tanggal_register');
             $table->text('jenis');
             $table->string('golongan');
             $table->integer('jumlah')->default(1);
