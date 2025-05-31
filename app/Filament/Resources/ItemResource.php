@@ -29,6 +29,8 @@ class ItemResource extends Resource
                         Forms\Components\TextInput::make('nomor_register')
                             ->required(),
                         Forms\Components\DatePicker::make('tanggal_register')
+                            ->maxDate(now())
+                            ->native(false)
                             ->required(),
                         Forms\Components\TextInput::make('jenis_tindak_pidana')
                             ->required(),

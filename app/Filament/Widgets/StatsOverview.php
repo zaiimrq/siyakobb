@@ -14,15 +14,15 @@ class StatsOverview extends BaseWidget
         return [
             Stat::make('Data', Number::format($this->getTotalItems()))
                 ->description('Total data diinput')
+                ->icon('heroicon-o-document-text')
                 ->color('primary'),
             Stat::make('Golongan', Number::format($this->getTotalGolongan()))
                 ->description('Total golongan')
+                ->icon('heroicon-o-tag')
                 ->color('primary'),
-            Stat::make('Barang', Number::format($this->getSumTotalItems()))
-                ->description('Total barang rampasan dan sitaan')
-                ->color('warning'),
             Stat::make('Users', Number::format($this->getTotalUsers()))
                 ->description('Total users')
+                ->icon('heroicon-o-users')
                 ->color('primary'),
         ];
     }
@@ -30,11 +30,6 @@ class StatsOverview extends BaseWidget
     private function getTotalItems(): int
     {
         return DB::table('items')->count();
-    }
-
-    private function getSumTotalItems(): int
-    {
-        return DB::table('items')->sum('jumlah');
     }
 
     private function getTotalUsers(): int

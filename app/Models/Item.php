@@ -18,7 +18,7 @@ class Item extends Model
     protected function casts(): array
     {
         return [
-            'tanggal_register' => 'datetime',
+            'tanggal_register' => 'date:dd/mm/yyyy',
             'kondisi_awal' => \App\Enums\ItemStatus::class,
         ];
     }

@@ -10,6 +10,8 @@ class ItemStatusChart extends ChartWidget
 {
     protected static ?string $heading = 'Status Barang';
 
+    protected static ?string $maxHeight = '300px';
+
     protected function getData(): array
     {
         return [
