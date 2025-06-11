@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('items', function (Blueprint $table) {
-            
+
             $table->foreignId('category_id')
                 ->nullable()
                 ->change()
@@ -20,5 +20,4 @@ return new class extends Migration
                 ->cascadeOnDelete();
         });
     }
-
 };
