@@ -12,7 +12,7 @@ class ItemPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->isAdmin();
+        return true;
     }
 
     /**
@@ -20,7 +20,7 @@ class ItemPolicy
      */
     public function view(User $user, Item $item): bool
     {
-        return $user->isAdmin();
+        return true;
     }
 
     /**
