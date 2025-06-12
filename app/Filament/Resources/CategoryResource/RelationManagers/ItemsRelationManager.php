@@ -60,8 +60,7 @@ class ItemsRelationManager extends RelationManager
                 Section::make()
                     ->schema([
                         Forms\Components\FileUpload::make('image')
-                            ->image()
-                            ->required(),
+                            ->image(),
                     ]),
             ]);
     }
