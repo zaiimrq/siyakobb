@@ -10,22 +10,79 @@
         }
 
         body {
-            font-family: Arial, sans-serisset;
+            font-family: Arial, sans-serif;
             font-size: 10px;
             margin: 0;
             padding: 0;
         }
 
+        .header {
+            margin-bottom: 50px;
+            position: relative;
+            height: 100px;
+        }
 
-        .header h2 {
+        .header::after {
+            content: '';
+            display: block;
+            width: 50%;
+            height: 2px;
+            background: #000;
+        }
+
+        .header img {
+            width: 100px;
+            height: 100px;
+            float: left;
+            margin-right: 20px;
+        }
+
+        .header-content {
+            float: left;
+
+        }
+
+        .header-text {
             margin: 0;
-            font-size: 14px;
+            font-size: 11px;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        .header-title {
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 0;
+            padding: 0;
+        }
+
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .signature {
+            margin-top: 30px;
+            text-align: right;
+            /* padding-right: 50px; */
+        }
+
+        .signature p {
+            margin: 3px 0;
+        }
+
+        .signature .name {
+            margin-top: 50px;
+            font-weight: bold;
+            text-decoration: underline;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            page-break-inside: avoid;
+            /* page-break-inside: avoid; */
         }
 
         th,
@@ -107,6 +164,17 @@
 </head>
 
 <body>
+    <div class="header clearfix">
+        <img loading="lazy" src="{{ public_path('img/logo.webp') }}" alt="Logo">
+        <div class="header-content">
+            <p class="header-title">KEMENTERIAN HUKUM DAN HAK ASASI MANUSIA REPUBLIK INDONESIA</p>
+            <p class="header-title">KANTOR WILAYAH PAPUA</p>
+            <p class="header-title">RUMAH PENYIMPANAN BENDA SITAAN NEGARA KELAS 1 JAYAPURA</p>
+            <p class="header-text">Jalan Raya Waena-Sentani No.101 Jayapura</p>
+            <p class="header-text">Email: rupbasanjpr@yahoo.com</p>
+        </div>
+    </div>
+
     @php
         $fields = request()->array('fields');
     @endphp
@@ -211,6 +279,12 @@
             @endforeach
         </tbody>
     </table>
+
+    <div class="signature">
+        <p>Jayapura, {{ now()->format('d F Y') }}</p>
+        <p class="name">Nama Pimpinan</p>
+        <p>NIP. 196000000000000001</p>
+    </div>
 </body>
 
 </html>
