@@ -25,7 +25,7 @@
         .header::after {
             content: '';
             display: block;
-            width: 50%;
+            width: 100%;
             height: 2px;
             background: #000;
         }
