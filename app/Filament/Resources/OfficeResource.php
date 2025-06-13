@@ -30,7 +30,7 @@ class OfficeResource extends Resource
                     ->schema([
                         Forms\Components\TextInput::make('leader_name'),
                         Forms\Components\TextInput::make('nip')
-                            ->number(),
+                            ->integer(),
                         Forms\Components\TextInput::make('email')
                             ->email(),
                         Forms\Components\TextInput::make('phone')
