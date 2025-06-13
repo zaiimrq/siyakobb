@@ -165,7 +165,9 @@
 
 <body>
     <div class="header clearfix">
-        <img loading="lazy" src="storage/{{ $office?->logo }}" alt="Logo">
+        @if ($office?->logo)
+            <img loading="lazy" src="storage/{{ $office?->logo }}" alt="Logo">
+        @endif
         <div class="header-content">
             <p class="header-title">KEMENTERIAN HUKUM DAN HAK ASASI MANUSIA REPUBLIK INDONESIA</p>
             <p class="header-title">KANTOR WILAYAH PAPUA</p>
