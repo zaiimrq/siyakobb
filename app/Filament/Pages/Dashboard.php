@@ -10,9 +10,16 @@ use App\Filament\Widgets\ItemTrend;
 use App\Filament\Widgets\StatsOverview;
 use App\Filament\Widgets\WelcomeStats;
 use Filament\Pages\Dashboard as BaseDashboard;
+use Livewire\Attributes\On;
 
 class Dashboard extends BaseDashboard
 {
+    #[On('testing')]
+    public function dashboardShow(): void
+    {
+        dd('oke');
+    }
+
     public function getWidgets(): array
     {
         return [
