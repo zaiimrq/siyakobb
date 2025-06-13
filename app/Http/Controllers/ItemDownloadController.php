@@ -32,6 +32,7 @@ class ItemDownloadController extends Controller
             [
                 'items' => $items,
                 'office' => \App\Models\Office::first() ?? null,
+                'signatureDate' => $request->date('signatureDate') ?? null,
             ]
         )->setPaper(
             'a4',

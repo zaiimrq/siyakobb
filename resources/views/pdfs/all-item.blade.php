@@ -280,11 +280,13 @@
         </tbody>
     </table>
 
-    <div class="signature">
-        <p>Jayapura, {{ now("Asia/Jayapura")->toDate()->format('d / m / Y') }}</p>
-        <p class="name">{{ $office?->leader_name }}</p>
-        <p>NIP. 196000000000000001</p>
-    </div>
+    @if($signatureDate)
+        <div class="signature">
+            <p>Jayapura, {{ $signatureDate->format('d / m / Y') }}</p>
+            <p class="name">{{ $office?->leader_name }}</p>
+            <p>NIP. 196000000000000001</p>
+        </div>
+    @endif
 </body>
 
 </html>
