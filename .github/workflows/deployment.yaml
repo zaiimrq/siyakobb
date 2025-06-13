@@ -22,8 +22,7 @@ jobs:
 
     - name: Pull changes on server
       run: |
-        ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.SSH_PATH }} && git pull"
-
+        ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}
     - name: Install dependencies
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.SSH_PATH }} && ~/bin/php ~/bin/composer install --no-dev --optimize-autoloader"
