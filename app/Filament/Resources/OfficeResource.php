@@ -29,6 +29,8 @@ class OfficeResource extends Resource
                     ->columns(2)
                     ->schema([
                         Forms\Components\TextInput::make('leader_name'),
+                        Forms\Components\TextInput::make('nip')
+                            ->number(),
                         Forms\Components\TextInput::make('email')
                             ->email(),
                         Forms\Components\TextInput::make('phone')

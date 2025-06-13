@@ -12,6 +12,7 @@ class Office extends Model
         'phone',
         'address',
         'logo',
+        'nip'
     ];
 
     protected static function booted(): void
