@@ -31,7 +31,7 @@ class ItemDownloadController extends Controller
             'pdfs.all-item',
             [
                 'items' => $items,
-                'office' => \App\Models\Office::first(),
+                'office' => \App\Models\Office::first() ?? null,
             ]
         )->setPaper(
             'a4',

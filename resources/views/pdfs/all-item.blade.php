@@ -165,13 +165,13 @@
 
 <body>
     <div class="header clearfix">
-        <img loading="lazy" src="storage/{{ $office->logo }}" alt="Logo">
+        <img loading="lazy" src="storage/{{ $office?->logo }}" alt="Logo">
         <div class="header-content">
             <p class="header-title">KEMENTERIAN HUKUM DAN HAK ASASI MANUSIA REPUBLIK INDONESIA</p>
             <p class="header-title">KANTOR WILAYAH PAPUA</p>
             <p class="header-title">RUMAH PENYIMPANAN BENDA SITAAN NEGARA KELAS 1 JAYAPURA</p>
-            <p class="header-text">{{ $office->address }}</p>
-            <p class="header-text">Email: {{ $office->email }}</p>
+            <p class="header-text">{{ $office?->address }}</p>
+            <p class="header-text">Email: {{ $office?->email }}</p>
         </div>
     </div>
 
@@ -282,7 +282,7 @@
 
     <div class="signature">
         <p>Jayapura, {{ now("Asia/Jayapura")->toDate()->format('d / m / Y') }}</p>
-        <p class="name">{{ $office->leader_name }}</p>
+        <p class="name">{{ $office?->leader_name }}</p>
         <p>NIP. 196000000000000001</p>
     </div>
 </body>

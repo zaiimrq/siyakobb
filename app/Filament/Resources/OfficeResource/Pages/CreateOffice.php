@@ -11,7 +11,7 @@ class CreateOffice extends CreateRecord
 
     public function mount(): void
     {
-        $this->record = static::$resource::getModel()::first();
+        $this->record = static::$resource::getModel()::first() ?? null;
 
         if ($this->record) {
             $this->redirectRoute('filament.admin.resources.offices.edit', $this->record->getKey());
