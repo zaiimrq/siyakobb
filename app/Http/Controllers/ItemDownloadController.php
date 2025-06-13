@@ -29,7 +29,10 @@ class ItemDownloadController extends Controller
 
         $pdf = Pdf::loadView(
             'pdfs.all-item',
-            ['items' => $items]
+            [
+                'items' => $items,
+                'office' => \App\Models\Office::first(),
+            ]
         )->setPaper(
             'a4',
             'landscape'
