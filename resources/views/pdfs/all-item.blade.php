@@ -165,7 +165,7 @@
 
 <body>
     <div class="header clearfix">
-        <img loading="lazy" src="{{ public_path('img/logo.webp') }}" alt="Logo">
+        <img loading="lazy" src="storage/{{ $office->logo }}" alt="Logo">
         <div class="header-content">
             <p class="header-title">KEMENTERIAN HUKUM DAN HAK ASASI MANUSIA REPUBLIK INDONESIA</p>
             <p class="header-title">KANTOR WILAYAH PAPUA</p>
