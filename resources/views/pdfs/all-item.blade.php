@@ -190,7 +190,7 @@
         @if($categoryData)
             <p>TINGKAT {{ $categoryData->name }}</p>
         @endif
-        <p>BULAN {{ strtoupper($signatureDateFromUrl->format("F Y")) }}</p>
+        <p>BULAN {{ strtoupper($signatureDateFromUrl->locale('id')->isoFormat("MMMM Y")) }}</p>
     </div>
     <table>
         <thead>

@@ -14,6 +14,10 @@ use Livewire\Attributes\On;
 
 class Dashboard extends BaseDashboard
 {
+
+    protected static ?string $title = "Dashboard";
+    protected static ?string $navigationLabel = "Dashboard";
+
     #[On('testing')]
     public function dashboardShow(): void
     {
