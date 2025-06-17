@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\OfficeResource\Pages;
 use App\Models\Office;
 use Filament\Forms;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -35,7 +36,10 @@ class OfficeResource extends Resource
                             ->email(),
                         Forms\Components\TextInput::make('phone')
                             ->tel(),
-                        Forms\Components\TextInput::make('address'),
+                        Forms\Components\TextInput::make('address')
+                            ->columnSpanFull(),
+                        RichEditor::make('kop_name')
+                            ->disableAllToolbarButtons(),
                         Forms\Components\FileUpload::make('logo')
                             ->directory('offices')
                             ->image()

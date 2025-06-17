@@ -8,6 +8,7 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateOffice extends CreateRecord
 {
     protected static string $resource = OfficeResource::class;
+
     protected static bool $canCreateAnother = false;
 
     public function mount(): void
