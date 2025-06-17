@@ -38,10 +38,12 @@ class OfficeResource extends Resource
                             ->tel(),
                         Forms\Components\TextInput::make('address'),
                         Forms\Components\RichEditor::make('signature_head')
+                            ->disableAllToolbarButtons()
                             ->label("Header TTD"),
                         RichEditor::make('kop_name')
                             ->disableAllToolbarButtons(),
                         Forms\Components\FileUpload::make('logo')
+                            ->columnSpanFull()
                             ->directory('offices')
                             ->image()
                             ->imageEditor(),
