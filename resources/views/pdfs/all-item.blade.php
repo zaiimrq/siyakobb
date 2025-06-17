@@ -296,6 +296,7 @@
 
     @if($signatureDate)
         <div class="signature">
+            <p>{{ $office?->signature_head }}</p>
             <p>Jayapura, {{ $signatureDate->format('d / m / Y') }}</p>
             <p class="name">{{ $office?->leader_name }}</p>
             <p>NIP. {{ $office?->nip }}</p>

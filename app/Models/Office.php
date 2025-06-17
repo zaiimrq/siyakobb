@@ -14,6 +14,7 @@ class Office extends Model
         'logo',
         'nip',
         'kop_name',
+        'signature_head'
     ];
 
     protected static function booted(): void

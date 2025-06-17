@@ -36,8 +36,9 @@ class OfficeResource extends Resource
                             ->email(),
                         Forms\Components\TextInput::make('phone')
                             ->tel(),
-                        Forms\Components\TextInput::make('address')
-                            ->columnSpanFull(),
+                        Forms\Components\TextInput::make('address'),
+                        Forms\Components\TextInput::make('signature_head')
+                            ->label("Header TTD"),
                         RichEditor::make('kop_name')
                             ->disableAllToolbarButtons(),
                         Forms\Components\FileUpload::make('logo')
