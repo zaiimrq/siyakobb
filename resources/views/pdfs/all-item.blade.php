@@ -295,11 +295,13 @@
     </table>
 
     @if($signatureDate)
-        <div class="signature" style="text-align: center;" >
+        <div class="signature">
+            <div style="text-align: center; width: 300px; float: right;">
             <p>Jayapura, {{ $signatureDate->format('d / m / Y') }}</p>
             <p>{!! $office?->signature_head !!}</p>
             <p class="name">{{ $office?->leader_name }}</p>
             <p>NIP. {{ $office?->nip }}</p>
+            </div>
         </div>
     @endif
 </body>
