@@ -171,9 +171,6 @@
         @endif
         <div class="header-content">
             <span class="header-title">{!! $office?->kop_name !!}</span>
-            {{-- <p class="header-title">KEMENTERIAN HUKUM DAN HAK ASASI MANUSIA REPUBLIK INDONESIA</p>
-            <p class="header-title">KANTOR WILAYAH PAPUA</p>
-            <p class="header-title">RUMAH PENYIMPANAN BENDA SITAAN NEGARA KELAS 1 JAYAPURA</p> --}}
             <p class="header-text">{{ $office?->address }}</p>
             <p class="header-text">Email: {{ $office?->email }}</p>
         </div>
@@ -181,7 +178,19 @@
 
     @php
         $fields = request()->array('fields');
+        $signatureDateFromUrl = request()->date('signatureDate') ?? now();
+        $categoryId = request()->date("categoryId");
+        $categoryData = \App\Models\Category::find($categoryId)
     @endphp
+    <div style="text-align: center; line-height: .4; font-weight: bold; margin-bottom: 40px;">
+        <p>FORMULIR BASAN DAN BARANG</p>
+        <p>LAPORAN BULANAN PENERIMAAN DAN PENILAIAN BASAN DAN BARAN</p>
+        <p>HASIL TINDAK PIDANA UMUM DAN TINDAK PIDANA KHUSUS</p>
+        @if($categoryData)
+            <p>TINGKAT {{ $categoryData->name }}</p>
+        @endif
+        <p>BULAN {{ strtoupper($signatureDateFromUrl->format("F Y")) }}</p>
+    </div>
     <table>
         <thead>
             <tr>
