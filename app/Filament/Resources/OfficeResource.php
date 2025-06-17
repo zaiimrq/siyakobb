@@ -37,7 +37,7 @@ class OfficeResource extends Resource
                         Forms\Components\TextInput::make('phone')
                             ->tel(),
                         Forms\Components\TextInput::make('address'),
-                        Forms\Components\TextInput::make('signature_head')
+                        Forms\Components\RichEditor::make('signature_head')
                             ->label("Header TTD"),
                         RichEditor::make('kop_name')
                             ->disableAllToolbarButtons(),
