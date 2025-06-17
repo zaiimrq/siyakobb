@@ -179,8 +179,9 @@
     @php
         $fields = request()->array('fields');
         $signatureDateFromUrl = request()->date('signatureDate') ?? now();
-        $categoryId = request()->date("categoryId");
-        $categoryData = \App\Models\Category::find($categoryId)
+        $categoryId = request()->integer("categoryId");
+        $categoryData = \App\Models\Category::find($categoryId);
+
     @endphp
     <div style="text-align: center; line-height: .4; font-weight: bold; margin-bottom: 40px;">
         <p>FORMULIR BASAN DAN BARANG</p>
