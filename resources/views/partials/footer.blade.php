@@ -1,3 +1,7 @@
+@php
+$office = \App\Models\Office::first()
+@endphp
+
 <footer class="bg-gray-900 text-gray-300 mt-24 relative overflow-hidden">
     <!-- Background Pattern -->
     <div class="absolute inset-0 opacity-5">
@@ -29,15 +33,15 @@
                         barang sitaan negara.
                     </p>
                     <div class="flex space-x-4">
-                        <a href="#"
+                        <a href="https://facebook.com/rupbasan.jayapura"
                             class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center hover:bg-blue-600 transition-colors duration-300">
                             <i class="fab fa-facebook-f text-white"></i>
                         </a>
-                        <a href="#"
+                        <a href="https://x.com/RupbasanJayapu1"
                             class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center hover:bg-blue-400 transition-colors duration-300">
                             <i class="fab fa-twitter text-white"></i>
                         </a>
-                        <a href="#"
+                        <a href="https://instagram.com/rupbasan_jayapura"
                             class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center hover:bg-pink-600 transition-colors duration-300">
                             <i class="fab fa-instagram text-white"></i>
                         </a>
@@ -55,8 +59,7 @@
                             </div>
                             <div>
                                 <p class="text-white font-medium">Alamat</p>
-                                <p class="text-sm text-gray-400">Jl. Tim, Asei Kecil, Kec. Sentani Tim., Kabupaten
-                                    Jayapura, Papua 99351</p>
+                                <p class="text-sm text-gray-400">{{ $office->address }}</p>
                             </div>
                         </li>
                         <li class="flex items-start space-x-3">
@@ -66,7 +69,7 @@
                             </div>
                             <div>
                                 <p class="text-white font-medium">Telepon</p>
-                                <p class="text-sm text-gray-400">0813 4338 0019</p>
+                                <p class="text-sm text-gray-400">{{ $office->phone }}</p>
                             </div>
                         </li>
                         <li class="flex items-start space-x-3">
@@ -76,7 +79,7 @@
                             </div>
                             <div>
                                 <p class="text-white font-medium">Email</p>
-                                <p class="text-sm text-gray-400">kejari.sorong@kejaksaan.go.id</p>
+                                <p class="text-sm text-gray-400">{{ $office->email }}</p>
                             </div>
                         </li>
                     </ul>
@@ -91,9 +94,9 @@
                         </div>
                         <div>
                             <p class="text-white/80 text-sm">Pengaduan 24 Jam</p>
-                            <p class="text-white text-2xl font-bold">0813 4338 0019</p>
+                            <p class="text-white text-2xl font-bold">{{ $office->phone }}</p>
                         </div>
-                        <a href="tel:0951321172"
+                        <a href="tel:{{ $office->phone }}"
                             class="block text-center py-2 bg-white/20 backdrop-blur-sm rounded-xl text-white hover:bg-white/30 transition-colors duration-300">
                             Hubungi Sekarang
                         </a>
