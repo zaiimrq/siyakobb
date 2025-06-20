@@ -1,22 +1,15 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@source "../views";
 
-/* Table pagination: active page highlight */
-.mary-table-pagination span[aria-current="page"] > span {
-    @apply bg-primary text-base-100
+.spin {
+    animation: spin 1s linear infinite;
 }
 
-/* Table pagination: for dark mode*/
-.mary-table-pagination span[aria-disabled="true"] span {
-    @apply bg-inherit
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
-
-/* Table pagination: for dark mode */
-.mary-table-pagination button {
-    @apply bg-base-100
-}
-.nav-custom > div {
-    @apply py-3 !important
-}
-

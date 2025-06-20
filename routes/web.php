@@ -1,31 +1,12 @@
 <?php
 
-use App\Http\Middleware\EnsureAdminMiddleware;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ItemDownloadController;
+use App\Models\Item;
 use Illuminate\Support\Facades\Route;
-use Livewire\Volt\Volt;
 
-Route::view('/', 'index')->name('home');
-Route::prefix('items')
-    ->name('items.')
-    ->middleware(['auth', EnsureAdminMiddleware::class])
-    ->group(function () {
-        Volt::route('/', 'items.index')->name('index');
-        Volt::route('/create', 'items.create')->name('create');
-        Volt::route('/{item}', 'items.show')->name('show');
-        Volt::route('/{item}/edit', 'items.edit')->name('edit');
-    });
+Route::view('/', 'welcome')->name('welcome');
+Route::get('/{item}', fn (Item $item) => view('items.show', ['item' => $item]))->name('items.show');
 
-// Authentication routes
-Route::middleware(['guest'])->group(function () {
-    Volt::route('/auth/login', 'auth.login')->name('login');
-});
-
-Route::get('/auth/logout', function () {
-    Auth::logout();
-    request()->session()->regenerateToken();
-
-    return to_route('home');
-})
+Route::get('/items/download', ItemDownloadController::class)
     ->middleware(['auth'])
-    ->name('logout');
+    ->name('items.download');

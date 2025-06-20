@@ -1,11 +1,19 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-DiDCv2_5.css",
+    "file": "assets/app-BXo8zDCq.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
+  "resources/img/banner.webp": {
+    "file": "assets/banner-IsJwmhDq.webp",
+    "src": "resources/img/banner.webp"
+  },
+  "resources/img/logo.webp": {
+    "file": "assets/logo-DcccjJXJ.webp",
+    "src": "resources/img/logo.webp"
+  },
   "resources/js/app.js": {
-    "file": "assets/app-CEsE5a7F.js",
+    "file": "assets/app-CiTsvVYV.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true

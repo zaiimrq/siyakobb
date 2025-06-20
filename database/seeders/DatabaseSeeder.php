@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Enums\Role;
+use App\Enums\UserRole;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,19 +15,17 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        // $this->call([ItemSeeder::class]);
-
         User::create([
             'name' => 'Admin',
             'email' => 'rupbasanjpr@gmail.com',
-            'password' => 'pastinoken',
-            'role' => Role::Admin,
+            'password' => bcrypt('pastinoken'),
+            'role' => UserRole::Admin,
         ]);
         User::create([
             'name' => 'Zulfa',
             'email' => 'zulfa@gmail.com',
-            'password' => 'zulfa30',
-            'role' => Role::Admin,
+            'password' => bcrypt('zulfa30'),
+            'role' => UserRole::Admin,
         ]);
     }
 }
