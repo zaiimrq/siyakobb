@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\ExecutionStatus;
 use App\Filament\Resources\ItemResource\Pages;
 use App\Models\Item;
 use Filament\Forms;
@@ -124,6 +125,22 @@ class ItemResource extends Resource
                     Tables\Actions\ViewAction::make(),
                     Tables\Actions\EditAction::make(),
                     Tables\Actions\DeleteAction::make(),
+                    \Filament\Tables\Actions\Action::make('eksekusi')
+                        ->label('Eksekusi')
+                        ->icon('heroicon-o-check-circle')
+                        ->color('primary')
+                        ->form([
+                            Forms\Components\Select::make('eksekusi')
+                                ->label('Eksekusi')
+                                ->options(ExecutionStatus::class)
+                                ->native(false)
+                                ->searchable()
+                                ->required(),
+                        ])
+                        ->action(fn (Item $record, array $data) => $record->update([
+                            'eksekusi' => $data['eksekusi'],
+                        ]))
+                        ->requiresConfirmation(),
                 ]),
 
             ])
@@ -149,5 +166,11 @@ class ItemResource extends Resource
             'create' => Pages\CreateItem::route('/create'),
             'edit' => Pages\EditItem::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): \Illuminate\Database\Eloquent\Builder
+    {
+        return parent::getEloquentQuery()
+            ->where('eksekusi', null);
     }
 }

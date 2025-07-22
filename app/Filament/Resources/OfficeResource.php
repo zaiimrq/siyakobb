@@ -40,7 +40,7 @@ class OfficeResource extends Resource
                             ->columnSpanFull(),
                         Forms\Components\RichEditor::make('signature_head')
                             ->disableAllToolbarButtons()
-                            ->label("Header TTD"),
+                            ->label('Header TTD'),
                         RichEditor::make('kop_name')
                             ->disableAllToolbarButtons(),
                         Forms\Components\FileUpload::make('logo')
