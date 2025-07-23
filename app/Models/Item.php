@@ -26,8 +26,13 @@ class Item extends Model
     protected static function booted(): void
     {
         static::updated(function (Item $item) {
-            if ($item->isDirty('image')) {
-                Storage::disk('public')->delete($item->getOriginal('image'));
+            $original = $item->getOriginal('image');
+            if (
+                $item->isDirty('image') &&
+                $original !== null &&
+                Storage::disk('public')->exists($original)
+            ) {
+                Storage::disk('public')->delete($original);
             }
         });
 
