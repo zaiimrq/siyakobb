@@ -130,8 +130,6 @@ class ItemResource extends Resource
                         ->label('Eksekusi')
                         ->icon('heroicon-o-check-circle')
                         ->color('primary')
-                        ->modalHeading('Eksekusi Item')
-                        ->modalDescription('Pilih status eksekusi untuk item ini.')
                         ->form([
                             Forms\Components\Select::make('eksekusi')
                                 ->label('Eksekusi')
@@ -144,12 +142,15 @@ class ItemResource extends Resource
                             $record->update([
                                 'eksekusi' => $data['eksekusi'],
                             ]);
-                            Notification::make()
+                            return Notification::make()
                                 ->title('Eksekusi Berhasil')
                                 ->success()
                                 ->body('Status eksekusi item telah diperbarui.')
                                 ->send();
-                        })->requiresConfirmation(),
+                        })
+                        ->requiresConfirmation()
+                        ->modalHeading('Eksekusi Item')
+                        ->modalDescription('Pilih status eksekusi untuk item ini.'),
                 ]),
 
             ])
