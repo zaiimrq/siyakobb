@@ -4,9 +4,7 @@ use App\Models\Item;
 use Livewire\Volt\Component;
 use Livewire\Attributes\Lazy;
 
-new
-    #[Lazy]
-    class extends Component {
+new #[Lazy] class extends Component {
     public Item $item;
 
     public function with(): array
@@ -20,9 +18,9 @@ new
     {
         return view('wires.components.card-skeleton');
     }
-}
+};
 
- ?>
+?>
 
 <div class="group bg-white rounded-2xl shadow-sm hover:shadow-lg overflow-hidden transition-all duration-300">
     <a wire:navigate href="{{ route('items.show', $item) }}">
@@ -61,12 +59,13 @@ new
             </div>
 
             <div class="mt-4 flex items-center justify-between">
-                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
+                <span
+                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
                     {{ match ($item->kondisi_awal) {
-    \App\Enums\ItemStatus::BAIK => 'bg-green-50 text-green-700 ring-1 ring-green-600/20',
-    \App\Enums\ItemStatus::RUSAK => 'bg-red-50 text-red-700 ring-1 ring-red-600/20',
-    \App\Enums\ItemStatus::SEBAGIAN => 'bg-yellow-50 text-yellow-700 ring-1 ring-yellow-600/20',
-} }}">
+                        \App\Enums\ItemStatus::BAIK => 'bg-green-50 text-green-700 ring-1 ring-green-600/20',
+                        \App\Enums\ItemStatus::RUSAK => 'bg-red-50 text-red-700 ring-1 ring-red-600/20',
+                        \App\Enums\ItemStatus::SEBAGIAN => 'bg-yellow-50 text-yellow-700 ring-1 ring-yellow-600/20',
+                    } }}">
                     {{ strtoupper($item->kondisi_awal->value) }}
                 </span>
                 <span class="text-blue-600 group-hover:translate-x-1 transition-transform duration-300">

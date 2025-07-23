@@ -6,7 +6,8 @@
         <div class="container mx-auto px-4 text-center animate-fade-in">
             <h1 class="text-5xl font-bold mb-6">Sistem Informasi Barang Sitaan</h1>
             <p class="text-xl text-gray-200 max-w-2xl mx-auto">
-                Sistem pengelolaan barang sitaan yang transparan dan akuntabel untuk memastikan penanganan yang profesional terhadap aset-aset yang disita oleh negara.
+                Sistem pengelolaan barang sitaan yang transparan dan akuntabel untuk memastikan penanganan yang
+                profesional terhadap aset-aset yang disita oleh negara.
             </p>
         </div>
     </div>
@@ -38,8 +39,9 @@
                                     <select name="category"
                                         class="w-full appearance-none bg-transparent border-0 py-3 pl-8 pr-6 cursor-pointer focus:outline-none focus:ring-0 text-sm text-gray-700">
                                         <option value="">Semua Kategori</option>
-                                        @foreach(\App\Models\Category::all() as $category)
-                                            <option value="{{ $category->name }}" {{ request('category') == $category->name ? 'selected' : '' }}>
+                                        @foreach (\App\Models\Category::all() as $category)
+                                            <option value="{{ $category->name }}"
+                                                {{ request('category') == $category->name ? 'selected' : '' }}>
                                                 {{ $category->name }}
                                             </option>
                                         @endforeach
@@ -56,7 +58,7 @@
                             <!-- Search Button -->
                             <div class="p-2">
                                 <button type="submit"
-                                    class="w-full md:w-auto px-8 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 active:bg-blue-800 transition-all duration-300 text-sm font-medium"
+                                    class="w-full cursor-pointer md:w-auto px-8 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 active:bg-blue-800 transition-all duration-300 text-sm font-medium"
                                     x-bind:disabled="loading">
                                     <span x-cloak x-show="!loading">
                                         <i class="fas fa-search"></i> Cari
@@ -73,6 +75,10 @@
         </div>
     </div>
 
+    <!-- Items Grid Section -->
+    @if (!(request()->filled('search') || request()->filled('category')))
+        <x-items-lelang />
+    @endif
     <!-- Main Content -->
     <livewire:components.items-grid />
 </x-layouts.app>
