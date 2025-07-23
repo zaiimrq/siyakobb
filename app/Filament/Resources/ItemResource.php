@@ -2,16 +2,17 @@
 
 namespace App\Filament\Resources;
 
-use App\Enums\ExecutionStatus;
-use App\Filament\Resources\ItemResource\Pages;
-use App\Models\Item;
 use Filament\Forms;
-use Filament\Forms\Components\Section;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Models\Item;
 use Filament\Tables;
-use Filament\Tables\Filters\SelectFilter;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use App\Enums\ExecutionStatus;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Section;
+use Filament\Notifications\Notification;
+use Filament\Tables\Filters\SelectFilter;
+use App\Filament\Resources\ItemResource\Pages;
 
 class ItemResource extends Resource
 {
@@ -129,6 +130,8 @@ class ItemResource extends Resource
                         ->label('Eksekusi')
                         ->icon('heroicon-o-check-circle')
                         ->color('primary')
+                        ->modalHeading('Eksekusi Item')
+                        ->modalDescription('Pilih status eksekusi untuk item ini.')
                         ->form([
                             Forms\Components\Select::make('eksekusi')
                                 ->label('Eksekusi')
@@ -137,10 +140,16 @@ class ItemResource extends Resource
                                 ->searchable()
                                 ->required(),
                         ])
-                        ->action(fn (Item $record, array $data) => $record->update([
-                            'eksekusi' => $data['eksekusi'],
-                        ]))
-                        ->requiresConfirmation(),
+                        ->action(function (Item $record, array $data) {
+                            $record->update([
+                                'eksekusi' => $data['eksekusi'],
+                            ]);
+                            Notification::make()
+                                ->title('Eksekusi Berhasil')
+                                ->success()
+                                ->body('Status eksekusi item telah diperbarui.')
+                                ->send();
+                        })->requiresConfirmation(),
                 ]),
 
             ])

@@ -3,7 +3,7 @@
 @endphp
 
 <div class="container mx-auto px-4 pt-32">
-    <h2 class="text-2xl font-bold text-gray-900 mb-6">Daftar Barang Lelang</h2>
+    @if($items)<h2 class="text-2xl font-bold text-gray-900 mb-6">Daftar Barang Lelang</h2>@endif
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 cursor-pointer">
         @foreach ($items as $item)
             <a wire:navigate href="{{ route('items.show', $item) }}"
