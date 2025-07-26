@@ -31,7 +31,10 @@ class UpdateItemToLelang extends Command
             ->whereNull('eksekusi')
             ->each(function (Item $item) {
                 if ($item->lelang_at <= now()) {
-                    $item->update(['eksekusi' => ExecutionStatus::Dilelang]);
+                    $item->update([
+                            'eksekusi' => ExecutionStatus::Dilelang,
+                            'lelang_at' => now()->addMonth(6),
+                        ]);
                 }
             });
     }
