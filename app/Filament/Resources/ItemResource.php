@@ -93,6 +93,7 @@ class ItemResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->poll('5s')
             ->defaultSort('created_at', 'desc')
             ->columns([
                 Tables\Columns\TextColumn::make('tersangka')
