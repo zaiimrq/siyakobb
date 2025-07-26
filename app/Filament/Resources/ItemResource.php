@@ -2,17 +2,18 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Forms;
-use App\Models\Item;
-use Filament\Tables;
-use Filament\Forms\Form;
-use Filament\Tables\Table;
 use App\Enums\ExecutionStatus;
-use Filament\Resources\Resource;
-use Filament\Forms\Components\Section;
-use Filament\Notifications\Notification;
-use Filament\Tables\Filters\SelectFilter;
 use App\Filament\Resources\ItemResource\Pages;
+use App\Models\Item;
+use Filament\Forms;
+use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Form;
+use Filament\Notifications\Notification;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Table;
 
 class ItemResource extends Resource
 {
@@ -26,11 +27,19 @@ class ItemResource extends Resource
     {
         return $form
             ->schema([
+                DateTimePicker::make('lelang_at')
+                    ->label('Tanggal Lelang')
+                    ->default(now()->addMonth(6))
+                    ->minDate(now())
+                    ->native(false)
+                    ->required()
+                    ->columnSpanFull(),
                 Section::make()
                     ->schema([
                         Forms\Components\TextInput::make('nomor_register')
                             ->required(),
                         Forms\Components\DatePicker::make('tanggal_register')
+                            ->default(now())
                             ->maxDate(now())
                             ->native(false)
                             ->required(),
@@ -126,7 +135,7 @@ class ItemResource extends Resource
                     Tables\Actions\ViewAction::make(),
                     Tables\Actions\EditAction::make(),
                     Tables\Actions\DeleteAction::make(),
-                    \Filament\Tables\Actions\Action::make('eksekusi')
+                    Tables\Actions\Action::make('eksekusi')
                         ->label('Eksekusi')
                         ->icon('heroicon-o-check-circle')
                         ->color('primary')
@@ -142,6 +151,7 @@ class ItemResource extends Resource
                             $record->update([
                                 'eksekusi' => $data['eksekusi'],
                             ]);
+
                             return Notification::make()
                                 ->title('Eksekusi Berhasil')
                                 ->success()

@@ -20,6 +20,7 @@ class Item extends Model
         return [
             'tanggal_register' => 'date',
             'kondisi_awal' => \App\Enums\ItemStatus::class,
+            'lelang_at' => 'datetime',
         ];
     }
 
