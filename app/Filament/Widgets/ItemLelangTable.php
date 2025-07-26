@@ -5,6 +5,7 @@ namespace App\Filament\Widgets;
 use App\Enums\ExecutionStatus;
 use App\Models\Item;
 use Filament\Tables;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Table;
 use Filament\Widgets\TableWidget as BaseWidget;
 
@@ -31,8 +32,6 @@ class ItemLelangTable extends BaseWidget
                 Tables\Columns\TextColumn::make('jumlah')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('jenis')
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('kondisi_awal')
                     ->badge()
                     ->searchable(),
@@ -40,6 +39,14 @@ class ItemLelangTable extends BaseWidget
                     ->searchable(),
                 Tables\Columns\TextColumn::make('jaksa_penitip')
                     ->searchable(),
+            ])->actions([
+                Action::make('reverse')
+                    ->label('Batalkan Lelang')
+                    ->icon('heroicon-o-x-mark')
+                    ->color('danger')
+                    ->action(function (Item $item) {
+                        $item->update(['eksekusi' => null]);
+                    }),
             ]);
     }
 }
