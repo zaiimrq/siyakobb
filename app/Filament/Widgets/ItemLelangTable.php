@@ -44,10 +44,10 @@ class ItemLelangTable extends BaseWidget
                     ->label('Batalkan Lelang')
                     ->icon('heroicon-o-x-mark')
                     ->color('danger')
-                    ->action(function (Item $record) {
-                        $record->eksekusi = null;
-                        $record->save();
-                    }),
+                    ->action(fn (Item $record) => $record->update([
+                        'eksekusi' => null,
+                        'lelang_at' => now()->addMonths(6),
+                    ])),
             ]);
     }
 }
