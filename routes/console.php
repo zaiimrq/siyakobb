@@ -2,4 +2,4 @@
 
 use Illuminate\Support\Facades\Schedule;
 
-Schedule::command('app:update-item-to-lelang')->everyFiveSeconds();
+Schedule::command('app:update-item-to-lelang')->everyTwoSeconds();
