@@ -10,3 +10,8 @@ Route::get('/{item}', fn (Item $item) => view('items.show', ['item' => $item]))-
 Route::get('/items/download', ItemDownloadController::class)
     ->middleware(['auth'])
     ->name('items.download');
+
+    Route::get('/debug', function () {
+        dd(now());
+    })->name('debug');
+

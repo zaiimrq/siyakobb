@@ -29,8 +29,6 @@ class AppServiceProvider extends ServiceProvider
         $this->configureModels();
         $this->configureDB();
         $this->configureDates();
-        dump(now());
-
     }
 
     private function configureDates(): void
