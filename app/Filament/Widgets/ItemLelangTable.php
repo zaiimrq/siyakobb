@@ -44,9 +44,7 @@ class ItemLelangTable extends BaseWidget
                     ->label('Batalkan Lelang')
                     ->icon('heroicon-o-x-mark')
                     ->color('danger')
-                    ->action(function (Item $item) {
-                        $item->update(['eksekusi' => null]);
-                    }),
+                    ->action(fn (Item $record) => $record->update(['eksekusi' => null])),
             ]);
     }
 }
