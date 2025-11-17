@@ -6,11 +6,10 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     public function shouldRun(): bool
     {
-        return DB::table('items')->count() > 0;
+        return DB::table("items")->count() > 0;
     }
 
     /**
@@ -18,15 +17,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('items', function (Blueprint $table) {
-            $table->dateTime('lelang_at')
+        Schema::table("items", function (Blueprint $table) {
+            $table
+                ->dateTime("lelang_at")
                 ->nullable()
-                ->comment('Tanggal lelang barang');
+                ->comment("Tanggal lelang barang");
         });
 
-        Item::all()->each(function (Item $item) {
+        Item::all()->each(function (?Item $item) {
+            if ($item === null) {
+                return;
+            }
             // Set default lelang_at to null for existing items
-            $item->update(['lelang_at' => $item->created_at->addMonth(6)]);
+            $item->update(["lelang_at" => $item->created_at->addMonth(6)]);
         });
     }
 
@@ -35,8 +38,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('items', function (Blueprint $table) {
-            $table->dropColumn('lelang_at');
+        Schema::table("items", function (Blueprint $table) {
+            $table->dropColumn("lelang_at");
         });
     }
 };

@@ -14,18 +14,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-
         User::create([
-            'name' => 'Admin',
-            'email' => 'rupbasanjpr@gmail.com',
-            'password' => bcrypt('pastinoken'),
-            'role' => UserRole::Admin,
+            "name" => "Admin",
+            "email" => "admin@admin.com",
+            "password" => bcrypt("admin"),
+            "role" => UserRole::Admin,
         ]);
         User::create([
-            'name' => 'Zulfa',
-            'email' => 'zulfa@gmail.com',
-            'password' => bcrypt('zulfa30'),
-            'role' => UserRole::Admin,
+            "name" => "User",
+            "email" => "uzer@user.com",
+            "password" => bcrypt("user"),
+            "role" => UserRole::User,
         ]);
     }
 }

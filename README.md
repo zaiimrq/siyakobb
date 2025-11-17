@@ -1,3 +1,0 @@
-# Siyakobb
-
-## About Siyakobb
